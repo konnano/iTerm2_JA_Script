@@ -36,3 +36,13 @@
  無限ループになるかもしれないので、慌てず強制終了して下さい
  
  動作に不具合出るかもしれません、勇気のある方はチャレンジして下さい
+ <br/><br/><br/>
+\# 以下は単体で動かせば動作してくれますが、何故かi_trance.plスクリプト翻訳では失敗します<br/>
+\# なのでsedの後半部分ををperlに変えてます
+
+echo "The following tags are recognized: \&lt;u\&gt;, \&lt;i\&gt;, and \&lt;b\&gt;. You can also use \&amp;lt; and \&amp;amp;."|</br>
+trans -b en:ja|<br/>
+sed -e 's/&/\\\&amp;/g' -e 's/>/\\\&gt;/g' -e 's/</\\\&lt;/g'
+
+
+
