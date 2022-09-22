@@ -12,7 +12,7 @@ unless( $ARGV[0]){ my $data;
    print" $i translate...\n";
   system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
          cat tran.txt|trans -b en:ja|sed -e 's/：/:/g' -e 's/&/\&amp;/g'|
-             perl -pe 's/>/&gt;/g'|perl -pe 's/</&lt;/g' >> trans.txt";
+         perl -pe 's/>/&gt;/g'|perl -pe 's/</&lt;/g' >> trans.txt";
  }
 
  open my $code1,'<','Interfaces/MainMenu.xib' or die"1 $!";
@@ -35,7 +35,7 @@ unless( $ARGV[0]){ my $data;
 
  open my $code3,'<','Interfaces/iTermEditKeyActionWindowController.xib' or die"3 $!\n";
   while(<$code3>){
-   $data .= "$1\n" if /title="([^"]+)"/;
+   $data .= "$1\n" if /\s+title="([^"]+)"/;
   }
  close $code3;
  trans_1 $data,3; $data = '';
@@ -43,7 +43,7 @@ unless( $ARGV[0]){ my $data;
  open my $code4,'<','sources/iTermAdvancedSettingsModel.m' or die"4 $!";
   while(<$code4>){
    $data .= "$1\n" if /SECTION_.+@"([^\\"]+)(?:\\n|")/;
-   $data .= "$1\n" if /\\n([^"]+)"/;
+   $data .= "$1\n" if /SECTION_[^\\]+\\n([^"]+)"/;
   }
  close $code4;
  trans_1 $data,4;
@@ -67,7 +67,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  my( $e,$me1,$me2,$me3,$me4 ) = 0;
  open my $xcode1,'<','Interfaces/MainMenu.xib' or die"6 $!";
   while(my $data1 = <$xcode1>){
-   if( $data1 =~ /\s+title="[^\\"]+"/ ){
+   if( $data1 =~ /\s+title="[^"]+"/ ){
     for(;$e<@bn;){ chomp $bn[$e];
      $data1 =~ s/title="[^"]+"/title="$bn[$e]"/;
        $e++; last;
@@ -128,22 +128,29 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
   while(my $data4 = <$xcode4>){
    if( $data4 =~ /SECTION_.+@"[^\\"]+(?:\\n|")/ and $bn[$e] ){
     for(;$e<@bn;){ chomp $bn[$e];
-     $data4 =~ s/(SECTION_.+)@"[^\\"]+(\\n|")/$1@"$bn[$e] $2/;
+     $data4 =~ s/@"[^\\"]+(\\n|")/@"$bn[$e] $1/;
        $e++; last;
     }
    }
-   if( $data4 =~ /\\n[^\\]+\\n/ and $bn[$e] ){
+   if( $data4 =~ /SECTION_.+\\n[^\\]+\\n/ and $bn[$e] ){
     for(;$e<@bn;){ chomp $bn[$e];
      $data4 =~ s/\\n[^\\]+\\n/\\n$bn[$e]\\n/;
        $e++; last;
     }
    }
-   if( $data4 =~ /\\n[^"]+"/ and $bn[$e] ){
-    for(;$e<@bn;){ chomp $bn[$e];
-     $data4 =~ s/\\n[^"]+"/\\n$bn[$e]"/;
-       $e++; last;
+   if( $data4 =~ /SECTION_.+\\n[^"]+"/ and $bn[$e] ){
+     if( $data4 =~ /.+\\n.+\\n.+/ ){
+      for(;$e<@bn;){ chomp $bn[$e];
+       $data4 =~ s/(.+\\n.+)\\n.*?"/$1\\n$bn[$e]"/;
+         $e++; last;
+      }
+     }else{
+      for(;$e<@bn;){ chomp $bn[$e];
+       $data4 =~ s/\\n.*?"/\\n$bn[$e]"/;
+         $e++; last;
+      }
+     }
     }
-   }	
    $me4 .= $data4;
   }
  close $xcode4;
