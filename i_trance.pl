@@ -128,25 +128,25 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
   while(my $data4 = <$xcode4>){
    if( $data4 =~ /SECTION_.+@"[^\\"]+(?:\\n|")/ and $bn[$e] ){
     for(;$e<@bn;){ chomp $bn[$e];
-     $data4 =~ s/@"[^\\"]+(\\n|")/@"$bn[$e] $1/;
+     $data4 =~ s/(.*SECTION_.+)@"[^\\"]+(\\n|")/$1@"$bn[$e] $2/;
        $e++; last;
     }
    }
    if( $data4 =~ /SECTION_.+\\n[^\\]+\\n/ and $bn[$e] ){
     for(;$e<@bn;){ chomp $bn[$e];
-     $data4 =~ s/\\n[^\\]+\\n/\\n$bn[$e]\\n/;
+     $data4 =~ s/(.*SECTION_.+)\\n[^\\]+\\n/$1\\n$bn[$e]\\n/;
        $e++; last;
     }
    }
    if( $data4 =~ /SECTION_.+\\n[^"]+"/ and $bn[$e] ){
      if( $data4 =~ /.+\\n.+\\n.+/ ){
       for(;$e<@bn;){ chomp $bn[$e];
-       $data4 =~ s/(.+\\n.+)\\n.*?"/$1\\n$bn[$e]"/;
+       $data4 =~ s/(.*SECTION_.+\\n.+)\\n.*?"/$1\\n$bn[$e]"/;
          $e++; last;
       }
      }else{
       for(;$e<@bn;){ chomp $bn[$e];
-       $data4 =~ s/\\n.*?"/\\n$bn[$e]"/;
+       $data4 =~ s/(.*SECTION_.+)\\n.*?"/$1\\n$bn[$e]"/;
          $e++; last;
       }
      }
