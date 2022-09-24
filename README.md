@@ -37,12 +37,18 @@
  
  動作に不具合出るかもしれません、勇気のある方はチャレンジして下さい
  <br/><br/><br/>
-\# 以下は単体で動かせば動作してくれますが、何故かi_trance.plスクリプト翻訳では失敗します<br/>
-\# なのでsedの後半部分ををperlに変えてます
+ \# 以下は単体で動かせば動作してくれますが、何故かi_trance.plスクリプト翻訳では失敗します<br/>
+ \# なのでsedの後半部分ををperlに変えてます
 
 echo "The following tags are recognized: \&lt;u\&gt;, \&lt;i\&gt;, and \&lt;b\&gt;. You can also use \&amp;lt; and \&amp;amp;."|</br>
-trans -b en:ja|<br/>
-sed -e 's/&/\\\&amp;/g' -e 's/>/\\\&gt;/g' -e 's/</\\\&lt;/g'
+trans -b en:ja|sed -e 's/&/\\\&amp;/g' -e 's/>/\\\&gt;/g' -e 's/</\\\&lt;/g'
 
+ i2_trance.plはキー項目も日本語化しました、バージョンでファイル変更されてます<br/>
+ 妄想デバッグのさらに不確定要素になります、多分これだろうで書き換えてます
 
+ ```prtl i2_trance.pl```
+
+ trans.txtの修正は半角はもちろん新たに==も変更しないで下さい
+
+ ```perl i2_trance.pl 1```
 
