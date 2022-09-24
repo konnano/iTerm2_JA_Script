@@ -40,7 +40,7 @@
  \# 以下は単体で動かせば動作してくれますが、何故かi_trance.plスクリプト翻訳では失敗します<br/>
  \# なのでsedの後半部分ををperlに変えてます
 
-echo "The following tags are recognized: \&lt;u\&gt;, \&lt;i\&gt;, and \&lt;b\&gt;. You can also use \&amp;lt; and \&amp;amp;."|</br>
+echo "The following tags are recognized: \&lt;u\&gt;, \&lt;i\&gt;, and \&lt;b\&gt;. You can also use \&amp;lt; and \&amp;amp;."|
 trans -b en:ja|sed -e 's/&/\\\&amp;/g' -e 's/>/\\\&gt;/g' -e 's/</\\\&lt;/g'
 
  i2_trance.plはキー項目も日本語化しました、バージョンでファイル変更されてます<br/>
