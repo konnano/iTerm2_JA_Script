@@ -48,7 +48,8 @@ trans -b en:ja|sed -e 's/&/\\\&amp;/g' -e 's/>/\\\&gt;/g' -e 's/</\\\&lt;/g'
 
  ```prtl i2_trance.pl```
 
- trans.txtの修正で半角記号は変更しないで下さい
+ trans.txtの修正で半角記号は変更しないで下さい<br/>
+ 新たに==記号はスペースの判定をするので前後の文字変更は大丈夫ですが前後の文字は必要です
 
  ```perl i2_trance.pl 1```
 
