@@ -5,14 +5,19 @@ use warnings;
 unless( $ARGV[0] ){
 
  sub trans_1{
-  my( $data,$i ) = @_;
+  my( $data,$i,$ls ) = @_;
   open my $read,'>','tran.txt' or die"trans_1 $!\n";
    print $read $data;
   close $read;
    print" $i translate...\n";
-  system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
-         cat tran.txt|trans -b en:ja|sed -e 's/：/:/g' -e 's/&/\&amp;/g'|
-         perl -pe 's/>/&gt;/g'|perl -pe 's/</&lt;/g' >> trans.txt";
+  unless( $ls ){
+   system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
+          cat tran.txt|trans -b en:ja|
+          perl -pe 's/：/:/g;s/&/\&amp;/g;s/>/&gt;/g;s/</&lt;/g' >> trans.txt";
+  }else{
+   system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
+          cat tran.txt|trans -b en:ja|perl -pe 's/：/:/g' >> trans.txt";
+  }
  }
    my( $data,$file );
 
@@ -68,11 +73,10 @@ unless( $ARGV[0] ){
  if( $file ){
   open my $code,'<',$file or die"5 $!\n";
    while(<$code>){
-    $data .= "$1==$2\n" if /@"([^\s]+)\s+(.+)"/;
+    $data .= "$1==$2\n" if /\s+@"([^\s]+)\s+(.+)"/;
    }
   close $code;
-  $data =~ s/-//g;
-  trans_1 $data,5; $data = '';
+  trans_1 $data,5,1; $data = '';
  }else{ print" Can't search file 5...\n"; }
 
  $file = -f 'sources/iTermKeyBindingMgr.m' ? 'sources/iTermKeyBindingMgr.m':
@@ -83,7 +87,7 @@ unless( $ARGV[0] ){
     $data .= "$1\n" if /actionString\s+=\s+@"([^"]+)"/;
    }
   close $code;
-  trans_1 $data,6; $data = '';
+  trans_1 $data,6,1; $data = '';
  }else{ print" Can't search file 6...\n"; }
 
  $file = -f 'sources/iTermAdvancedSettingsModel.m' ?
@@ -95,7 +99,7 @@ unless( $ARGV[0] ){
     $data .= "$1\n" if /SECTION_[^\\]+\\n([^"]+)"/;
    }
   close $code;
-  trans_1 $data,7;
+  trans_1 $data,7,1;
  }else{ print" Can't search file 7...\n"; }
 
  unlink 'tran.txt';
@@ -215,7 +219,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_5 $!\n";
    while(my $data = <$code>){
-    if( $data =~ /@"[^\s]+\s+.+"/ ){
+    if( $data =~ /\s+@"[^\s]+\s+.+"/ ){
      for(;$e<@bn;){ #chomp $bn[$e];
       $bn[$e] =~ s/(.+)==(.+)\n/$1 $2/;
       $data =~ s/@".+"/@"$bn[$e]"/;
