@@ -111,13 +111,13 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  }
    my( $e,$me,$file ) = 0;
 
- open my $trans,'<','trans.txt' or die"1_1 $!\n";
+ open my $trans,'<','trans.txt' or die"item_1 $!\n";
   my @bn = <$trans>;
  close $trans;
 
  $file = -f 'Interfaces/MainMenu.xib' ? 'Interfaces/MainMenu.xib' : 0;
  if( $file ){
-  open my $code,'<',$file or die"6 $!";
+  open my $code,'<',$file or die"1_1 $!";
    while(my $data = <$code>){
     if( $data =~ /\s+title="[^"]+"/ ){
      for(;$e<@bn;){ chomp $bn[$e];
