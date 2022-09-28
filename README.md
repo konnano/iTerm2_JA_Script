@@ -52,4 +52,7 @@ trans -b en:ja|sed -e 's/&/\\\&amp;/g' -e 's/>/\\\&gt;/g' -e 's/</\\\&lt;/g'
  新たに==記号はスペースの判定をするので前後の文字変更は大丈夫ですが前後の文字は必要です
 
  ```perl i2_trance.pl 1```
-
+ 
+<br/>
+ i3_trance.plで日本語化を増やしました、仕様はi2_trance.plと同じです
+ 
