@@ -13,7 +13,7 @@ unless( $ARGV[0] ){
   unless( $ls ){
    system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
           cat tran.txt|trans -b en:ja|
-          perl -pe 's/：/:/g;s/&/\&amp;/g;s/>/&gt;/g;s/</&lt;/g' >> trans.txt";
+          perl -pe 's/：/:/g;s/&/&amp;/g;s/>/&gt;/g;s/</&lt;/g' >> trans.txt";
   }else{
    system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
           cat tran.txt|trans -b en:ja|perl -pe 's/：/:/g' >> trans.txt";
