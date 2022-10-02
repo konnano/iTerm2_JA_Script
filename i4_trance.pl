@@ -20,7 +20,7 @@ unless( $ARGV[0] ){
           cat tran.txt|trans -b en:$Lang|
           perl -pe 's/：/:/g;s/\"/”/g;s/\\\\(?!\$)/\\\\\\\\/g' >> trans.txt";
   }else{
-   system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15|
+   system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
           cat tran.txt|trans -b en:$Lang|perl -pe 's/：/:/g;s/\"/”/g'|
           sed 'N;s/\\n/==/' >> trans.txt";
   }
