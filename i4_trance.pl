@@ -142,8 +142,25 @@ unless( $ARGV[0] ){
       $data .= "$1\n" if /SECTION_.+\\n([^"]+)"/;
    }
   close $code;
-  trans_1 $data,10,1;
+  trans_1 $data,10,1; $data = '';
  }else{ print" Can't search file 10...\n"; }
+
+  my $me;
+  open my $code1,'<','trans.txt' or die "R1 $!\n";
+   while(<$code1>){
+    s/””|\\\\\\”|\\\\”//g;
+    s/\\\\u003e/> /g;
+    s/\\\\u0026/& /g;
+    s/\\\\u003d/= /g;
+    s/\\\\u200b//g;
+    s/\\\\\\\\(\d)/\\\\$1/g;
+    s/(\\) /$1/g;
+    $me .= $_;
+   }
+  close $code1;
+  open my $code2,'>','trans.txt' or die "R2 $!\n";
+   print $code2 $me;
+  close $code2;
 
  unlink 'tran.txt';
 }
