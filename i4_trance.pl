@@ -131,7 +131,7 @@ unless( $ARGV[0] ){
   trans_1 $data,9,1; $data = '';
  }else{ print" Can't search file 9...\n"; }
 
-$file = -f 'sources/iTermAdvancedSettingsModel.m' ?
+ $file = -f 'sources/iTermAdvancedSettingsModel.m' ?
             'sources/iTermAdvancedSettingsModel.m' : 0;
  if( $file ){
   open my $code,'<',$file or die"10 $!";
