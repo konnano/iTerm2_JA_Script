@@ -37,7 +37,7 @@ unless( $ARGV[0] ){
  }else{ print" Can't search file 1...\n"; }
 
  $file = -f 'Interfaces/PreferencePanel.xib' ? 'Interfaces/PreferencePanel.xib' : 0;
- if( $file ){ my $zero ='0';
+ if( $file ){
   open my $code,'<',$file or die"2 $!";
    while(<$code>){
     $data .= /\s+title="([^"]+)"/   ? "$1\n" :
