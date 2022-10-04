@@ -17,8 +17,7 @@ unless( $ARGV[0] ){
           perl -pe 's/：/:/g;s/&/&amp;/g;s/>/&gt;/g;s/</&lt;/g;s/\"/&quot;/g' >> trans.txt";
   }elsif( $ls and $ls == 1 ){
    system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
-          cat tran.txt|trans -b en:$Lang|
-          perl -pe 's/：/:/g;s/\"/”/g;s/\\\\(?!\$)/\\\\\\\\/g' >> trans.txt";
+          cat tran.txt|trans -b en:$Lang|perl -pe 's/：/:/g;s/\"/”/g' >> trans.txt";
   }else{
    system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
           cat tran.txt|trans -b en:$Lang|perl -pe 's/：/:/g;s/\"/”/g'|
@@ -132,7 +131,7 @@ unless( $ARGV[0] ){
   trans_1 $data,9,1; $data = '';
  }else{ print" Can't search file 9...\n"; }
 
- $file = -f 'sources/iTermAdvancedSettingsModel.m' ?
+$file = -f 'sources/iTermAdvancedSettingsModel.m' ?
             'sources/iTermAdvancedSettingsModel.m' : 0;
  if( $file ){
   open my $code,'<',$file or die"10 $!";
@@ -142,19 +141,20 @@ unless( $ARGV[0] ){
       $data .= "$1\n" if /SECTION_.+\\n([^"]+)"/;
    }
   close $code;
-  trans_1 $data,10,1; $data = '';
+  trans_1 $data,10,1;
  }else{ print" Can't search file 10...\n"; }
 
   my $me;
   open my $code1,'<','trans.txt' or die "R1 $!\n";
    while(<$code1>){
-    s/””|\\\\\\”|\\\\”//g;
-    s/\\\\u003e/> /g;
-    s/\\\\u0026/& /g;
-    s/\\\\u003d/= /g;
-    s/\\\\u200b//g;
-    s/\\\\\\\\(\d)/\\\\$1/g;
-    s/(\\) /$1/g;
+   s/(\\) /$1/g;
+   s/””|\\”//g;
+   s/\\u003e/> /g;
+   s/\\u0026/& /g;
+   s/\\u003d/= /g;
+   s/\\u200b//g;
+   s/\\+([34])/\\\\$1/g;
+   s/\\+.?$/\\/;
     $me .= $_;
    }
   close $code1;
