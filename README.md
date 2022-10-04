@@ -56,5 +56,4 @@ trans -b en:ja|sed -e 's/&/\\\&amp;/g' -e 's/>/\\\&gt;/g' -e 's/</\\\&lt;/g'
 <br/>
  i3_trance.plで日本語化を増やしました、仕様はi2_trance.plと同じです 
 <br/><br/>
- i4_trance.plは多言語Google翻訳対応の雛形です。<br/>
- 韓国語翻訳や文字コード対応が必要なのとか汎用性を持たせる関数が必要になってきました
+ i4_trance.plは多言語Google翻訳対応の雛形です。
