@@ -37,7 +37,7 @@ unless( $ARGV[0] ){
  }else{ print" Can't search file 1...\n"; }
 
  $file = -f 'Interfaces/PreferencePanel.xib' ? 'Interfaces/PreferencePanel.xib' : 0;
- if( $file ){
+ if( $file ){ my $zero ='0';
   open my $code,'<',$file or die"2 $!";
    while(<$code>){
     $data .= /\s+title="([^"]+)"/   ? "$1\n" :
@@ -47,6 +47,7 @@ unless( $ARGV[0] ){
              m|<string key="toolTip">(.+)</string>| ? "$1\n" : '';
    }
   close $code;
+  $data =~ s/\\0/\\\\0/;
   trans_1 $data,2; $data = '';
  }else{ print" Can't search file 2...\n"; }
 
