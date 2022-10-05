@@ -149,13 +149,14 @@ unless( $ARGV[0] ){
   open my $code1,'<','trans.txt' or die "R1 $!\n";
    while(<$code1>){
    s/(\\) /$1/g;
-   s/””|\\”//g;
+   s/””|&quot;&quot;|\\”|\\&quot;//g;
    s/\\u003e/> /g;
    s/\\u0026/& /g;
    s/\\u003d/= /g;
    s/\\u200b//g;
-   s/\\+([34])/\\\\$1/g;
-   s/\\+.?$/\\/;
+   s/\\+/\\/g;
+   s/\\([34])/\\\\$1/g;
+   s/\\.$/\\/;
     $me .= $_;
    }
   close $code1;
