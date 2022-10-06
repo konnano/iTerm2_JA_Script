@@ -3,7 +3,7 @@ use strict;
 use warnings;
 my $Lang = 'ja';
 
-unless( $ARGV[0] ){
+unless( $ARGV[0] or -f 'trans.txt' ){
 
  sub trans_1{
   my( $data,$i,$ls ) = @_;
