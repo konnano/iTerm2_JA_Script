@@ -11,6 +11,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
    print $read $data;
   close $read;
    print" $i translate...\n";
+
   unless( $ls ){
    system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
           cat tran.txt|trans -b en:$Lang|
@@ -185,9 +186,9 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_1 $!";
    while(my $data = <$code>){
-    if( $data =~ /\s+title="[^"]+"/ ){
+    if( $data =~ /\s+title="[^"]*"/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/title="[^"]+"/title="$bn[$e]"/;
+      $data =~ s/title="[^"]*"/title="$bn[$e]"/;
         $e++; last;
      }
     }
@@ -201,29 +202,29 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_2 $!";
    while(my $data = <$code>){
-    if( $data =~ /\s+title="[^"]+"/ ){
+    if( $data =~ /\s+title="[^"]*"/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/title="[^"]+"/title="$bn[$e]"/;
+      $data =~ s/title="[^"]*"/title="$bn[$e]"/;
         $e++; last;
      }
-    }elsif( $data =~ /\s+label="[^"]+"/ ){
+    }elsif( $data =~ /\s+label="[^"]*"/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/label="[^"]+"/label="$bn[$e]"/;
+      $data =~ s/label="[^"]*"/label="$bn[$e]"/;
         $e++; last;
      }
     }elsif( $data =~ /<string key="title">/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s|.+|<string key="title">$bn[$e]</string>|;
+      $data =~ s|<string key="title">.*</string>|<string key="title">$bn[$e]</string>|;
         $e++; last;
      }
     }elsif( $data =~ /<string key="toolTip">/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s|.+|<string key="toolTip">$bn[$e]</string>|;
+      $data =~ s|<string key="toolTip">.*</string>|<string key="toolTip">$bn[$e]</string>|;
         $e++; last;
      }
     }elsif( $data =~ /\s+toolTip="/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/toolTip="[^"]+"/toolTip="$bn[$e]"/;
+      $data =~ s/toolTip="[^"]*"/toolTip="$bn[$e]"/;
         $e++; last;
      }
     }
@@ -238,19 +239,19 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_3 $!";
    while(my $data = <$code>){
-    if( $data =~ /\s+title="[^"]+"/ ){
+    if( $data =~ /\s+title="[^"]*"/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/title="[^"]+"/title="$bn[$e]"/;
+      $data =~ s/title="[^"]*"/title="$bn[$e]"/;
         $e++; last;
      }
     }elsif( $data =~ /<string key="toolTip">/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s|.+|<string key="toolTip">$bn[$e]</string>|;
+      $data =~ s|<string key="toolTip">.*</string>|<string key="toolTip">$bn[$e]</string>|;
         $e++; last;
      }
     }elsif( $data =~ /\s+toolTip="/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/toolTip="[^"]+"/toolTip="$bn[$e]"/;
+      $data =~ s/toolTip="[^"]*"/toolTip="$bn[$e]"/;
         $e++; last;
      }
     }
@@ -265,9 +266,9 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_4 $!\n";
    while(my $data = <$code>){
-    if( $data =~ /title="[^"]+"/ ){
+    if( $data =~ /title="[^"]*"/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/title="[^"]+"/title="$bn[$e]"/;
+      $data =~ s/title="[^"]*"/title="$bn[$e]"/;
         $e++; last;
      }
     }
@@ -282,9 +283,9 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_5 $!\n";
    while(my $data = <$code>){
-    if( $data =~ /title="[^"]+"/ ){
+    if( $data =~ /title="[^"]*"/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/title="[^"]+"/title="$bn[$e]"/;
+      $data =~ s/title="[^"]*"/title="$bn[$e]"/;
         $e++; last;
      }
     }
@@ -299,19 +300,19 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_6 $!";
    while(my $data = <$code>){
-    if( $data =~ /\s+title="[^"]+"/ ){
+    if( $data =~ /\s+title="[^"]*"/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/title="[^"]+"/title="$bn[$e]"/;
+      $data =~ s/title="[^"]*"/title="$bn[$e]"/;
         $e++; last;
      }
     }elsif( $data =~ /<string key="title">/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s|.+|<string key="title">$bn[$e]</string>|;
+      $data =~ s|<string key="title">.*</string>|<string key="title">$bn[$e]</string>|;
         $e++; last;
      }
     }elsif( $data =~ /\s+toolTip="/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/toolTip="[^"]+"/toolTip="$bn[$e]"/;
+      $data =~ s/toolTip="[^"]*"/toolTip="$bn[$e]"/;
         $e++; last;
      }
     }
@@ -326,9 +327,9 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_7 $!";
    while(my $data = <$code>){
-    if( $data =~ /\s+title="[^"]+"/ ){
+    if( $data =~ /\s+title="[^"]*"/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/title="[^"]+"/title="$bn[$e]"/;
+      $data =~ s/title="[^"]*"/title="$bn[$e]"/;
         $e++; last;
      }
     }
@@ -342,10 +343,10 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_8 $!\n";
    while(my $data = <$code>){
-    if( $data =~ /\s+@"[^\s]+\s+.+"/ ){
+    if( $data =~ /\s+@"[^\s]*\s+.*"/ ){
      for(;$e<@bn;){ chomp $bn[$e];
       $bn[$e] =~ s/==/ /;
-      $data =~ s/@".+"/@"$bn[$e]"/;
+      $data =~ s/@".*"/@"$bn[$e]"/;
         $e++; last;
      }
     }
@@ -360,9 +361,9 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_9 $!\n";
    while(my $data = <$code>){
-    if( $data =~ /actionString\s+=\s+@"[^"]+"/ ){
+    if( $data =~ /actionString\s+=\s+@"[^"]*"/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/(actionString\s+=\s+)@"[^"]+"/$1@"$bn[$e]"/;
+      $data =~ s/(actionString\s+=\s+)@"[^"]*"/$1@"$bn[$e]"/;
         $e++; last;
      }
     }
@@ -377,21 +378,21 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_10 $!";
    while(my $data = <$code>){
-    if( $data =~ /SECTION_.+@"[^\\"]+(?:\\n|")/ and $bn[$e] ){
+    if( $data =~ /SECTION_.+@"[^\\"]*(?:\\n|")/ and $bn[$e] ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/(.*SECTION_.+)@"[^\\"]+(\\n|")/$1@"$bn[$e] $2/;
+      $data =~ s/(SECTION_.+)@"[^\\"]*(\\n|")/$1@"$bn[$e] $2/;
         $e++; last;
      }
     }
-    if( $data =~ /SECTION_.+\\n[^\\]+\\n/ and $bn[$e] ){
+    if( $data =~ /SECTION_.+\\n[^\\]*\\n/ and $bn[$e] ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/(.*SECTION_.+)\\n[^\\]+\\n/$1\\n$bn[$e]\\n/;
+      $data =~ s/(SECTION_.+)\\n[^\\]*\\n/$1\\n$bn[$e]\\n/;
         $e++; last;
      }
     }
     if( $data =~ /SECTION_.+\\n[^"]+"/ and $bn[$e] ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/(.*SECTION_.+)\\n[^"]+"/$1\\n$bn[$e]"/;
+      $data =~ s/(SECTION_.+)\\n[^"]+"/$1\\n$bn[$e]"/;
         $e++; last;
      }
     }
