@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-my $Lang = 'ja';
+my $Lang = 'ja'; # trans code
 
 unless( $ARGV[0] or -f 'trans.txt' ){
 
