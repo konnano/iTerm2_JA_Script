@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-my $Lang = 'ja'; # trans code
+my $Lang = 'ja'; ## trans code
 
 unless( $ARGV[0] or -f 'trans.txt' ){
 
@@ -156,7 +156,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
    s/\\u003d/= /g;
    s/\\u200b//g;
    s/\\+/\\/g;
-   s/\\([34])/\\\\$1/g;
+   s/\\([34(])/\\\\$1/g;
    s/\\.$/\\/;
     $me .= $_;
    }
