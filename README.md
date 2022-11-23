@@ -1,4 +1,4 @@
- iTerm2 のソースを書き換えて翻訳するPerlスクリプトです<br/>
+ iTerm2 のソースを書き換えて翻訳するPerlスクリプトです [English README is here ](https://github.com/konnano/iTrem2_JA_Script/blob/main/README.en.md)<br/>
  [**iTerm2**](https://github.com/gnachman/iTerm2) が公開されてる GitHub から Xcode のバージョンに対応してる<br/>
  iTerm2 のバージョンを探してダウンロードして下さい
  
@@ -19,7 +19,7 @@
  順番にソースに挿入するので、書き換えには注意して下さい<br/>
  機械翻訳を修正する場合は半角記号は変更しないで下さい
  
- 例 Mouse: <= : は半角記号にして下さい</br>
+ 例 Mouse: ねずみ: <= : は半角記号にして下さい</br>
  == 半角記号はスペースの判定をするので、前後の文字変更は大丈夫ですが、前後の文字は必要です
  
  順番など間違った場合は trans.txt 追加書き込みなので<br/>
@@ -28,4 +28,4 @@
 
  ```perl i4_trance.pl 1```
  
- 後はXcodeでビルドすれば翻訳、出来てるはずです
+ 後はXcodeでビルドすれば翻訳出来てるはずです
