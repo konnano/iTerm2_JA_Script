@@ -138,8 +138,8 @@ unless( $ARGV[0] or -f 'trans.txt' ){
  if( $file ){
   open my $code,'<',$file or die"10 $!";
    while(<$code>){
-    $data .= "$1\n" if /SECTION_.+@"([^\\"]+)(?:\\n|")/;
-     $data .= "$1\n" if /SECTION_.+\\n([^\\]+)\\n/;
+    $data .= "$1\n" if /SECTION_.+@"(.*?)(?:\\n|")/;
+     $data .= "$1\n" if /SECTION_.+\\n(.*?)\\n/;
       $data .= "$1\n" if /SECTION_.+\\n([^"]+)"/;
    }
   close $code;
@@ -345,7 +345,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
    while(my $data = <$code>){
     if( $data =~ /\s+@"[^\s]*\s+.*"/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $bn[$e] =~ s/==/ /;
+      $bn[$e] =~ tr/==/ /;
       $data =~ s/@".*"/@"$bn[$e]"/;
         $e++; last;
      }
@@ -378,19 +378,19 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_10 $!";
    while(my $data = <$code>){
-    if( $data =~ /SECTION_.+@"[^\\"]*(?:\\n|")/ and $bn[$e] ){
+    if( $data =~ /SECTION_.+@".*?(?:\\n|")/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/(SECTION_.+)@"[^\\"]*(\\n|")/$1@"$bn[$e] $2/;
+      $data =~ s/(SECTION_.+)@".*?(\\n|")/$1@"$bn[$e] $2/;
         $e++; last;
      }
     }
-    if( $data =~ /SECTION_.+\\n[^\\]*\\n/ and $bn[$e] ){
+    if( $data =~ /SECTION_.+\\n.*?\\n/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $data =~ s/(SECTION_.+)\\n[^\\]*\\n/$1\\n$bn[$e]\\n/;
+      $data =~ s/(SECTION_.+)\\n.*?\\n/$1\\n$bn[$e]\\n/;
         $e++; last;
      }
     }
-    if( $data =~ /SECTION_.+\\n[^"]+"/ and $bn[$e] ){
+    if( $data =~ /SECTION_.+\\n[^"]+"/ ){
      for(;$e<@bn;){ chomp $bn[$e];
       $data =~ s/(SECTION_.+)\\n[^"]+"/$1\\n$bn[$e]"/;
         $e++; last;
