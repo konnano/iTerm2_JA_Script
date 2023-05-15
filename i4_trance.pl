@@ -15,14 +15,13 @@ unless( $ARGV[0] or -f 'trans.txt' ){
   unless( $ls ){
    system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
           cat tran.txt|trans -b en:$Lang|
-          perl -pe 's/：/:/g;s/&/&amp;/g;s/>/&gt;/g;s/</&lt;/g;s/\"/&quot;/g' >> trans.txt";
+          sed 's/：/:/g;s/&/&amp;/g;s/>/&gt;/g;s/</&lt;/g;s/\"/&quot;/g' >> trans.txt";
   }elsif( $ls and $ls == 1 ){
    system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
-          cat tran.txt|trans -b en:$Lang|perl -pe 's/：/:/g;s/\"/”/g' >> trans.txt";
+          cat tran.txt|trans -b en:$Lang|sed 's/：/:/g;s/\"/”/g' >> trans.txt";
   }else{
    system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
-          cat tran.txt|trans -b en:$Lang|perl -pe 's/：/:/g;s/\"/”/g'|
-          sed 'N;s/\\n/==/' >> trans.txt";
+          cat tran.txt|trans -b en:$Lang|sed 's/：/:/g;s/\"/”/g;N;s/\\n/==/' >> trans.txt";
   }
  }
    my( $data,$file );
@@ -158,6 +157,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
    s/\\+/\\/g;
    s/\\([34(])/\\\\$1/g;
    s/\\.$/\\/;
+   s/(.+ssh -t.*)\\(.+)/$1$2 \\/;
     $me .= $_;
    }
   close $code1;
