@@ -347,7 +347,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
    while(my $data = <$code>){
     if( $data =~ /\s+@"[^\s]*\s+.*"/ ){
      for(;$e<@bn;){ chomp $bn[$e];
-      $bn[$e] =~ tr/==/ /;
+      $bn[$e] =~ s/==/ /;
       $data =~ s/@".*"/@"$bn[$e]"/;
         $e++; last;
      }
