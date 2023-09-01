@@ -30,7 +30,7 @@
  
  後はXcodeでビルドすれば翻訳出来てるはずです
 
- 標準なら以下のフォルダーに iTrem2.appが作成されます
+ 標準なら以下のフォルダーに iTerm2.appが作成されます
 
 ~/Library/Developer/Xcode/DerivedData/iTerm2-...../Build/Products/Development
 
