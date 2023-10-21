@@ -1,0 +1,60 @@
+MacOS10.15で、iTerm2-3.4.21をビルドする
+
+Xcodeのアカウント設定が必要なのか分かりませんが設定しておきましょう
+Xcode -> Preferences -> Accounts
+
+以下をダウンロードしてインストール
+
+https://www.python.org/ftp/python/3.9.13/python-3.9.13-macos11.pkg
+
+以下のコマンドをタイプしモジュールをインストール
+
+/Library/Frameworks/Python.framework/Versions/3.9/bin/pip3 install pyobjc
+
+tools/updateVersion.py # 1行目
+
+#!/opt/homebrew/bin/python3
+
+以下に書き換え
+
+#!/Library/Frameworks/Python.framework/Versions/3.9/bin/python3
+
+sources/iTermRootTerminalView.m # 1257行目
+
+const NSEdgeInsets safeAreaInsets = self.window.screen.safeAreaInsets;
+return safeAreaInsets.top;
+
+以下に書き換え
+
+//const NSEdgeInsets safeAreaInsets = self.window.screen.safeAreaInsets;
+return 0;
+
+sources/NSScreen+iTerm.m # 97行目
+
+return self.safeAreaInsets.top;
+
+以下に書き換え
+
+return 0;
+
+sources/NSScreen+iTerm.m # 113行目
+
+return MAX(24, self.safeAreaInsets.top);
+
+以下に書き換え
+
+return MAX(24, 0);
+
+iTerm2-3.4.21に移動しgitにコミットする
+
+cd iTerm2-3.4.21
+
+git init
+
+git add .
+
+git commit -m "first commit"
+
+これで、iTerm2.appのビルド出来ると思います
+
+~/Library/Developer/Xcode/DerivedData/iTerm2-...../Build/Products/Development
