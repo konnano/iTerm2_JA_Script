@@ -55,6 +55,6 @@ git add .
 
 git commit -m "first commit"
 
-これで、iTerm2.appのビルド出来ると思います
+これで、MacOS10.15（Xcode 12.4) iTerm2.appのビルド出来ると思います
 
 ~/Library/Developer/Xcode/DerivedData/iTerm2-...../Build/Products/Development
