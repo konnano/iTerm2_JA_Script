@@ -1,4 +1,4 @@
-MacOS10.15で、iTerm2-3.4.21をビルドする
+MacOS10.15（Xcode 12.4)で、iTerm2-3.4.21をビルドする
 
 Xcodeのアカウント設定が必要なのか分かりませんが設定しておきましょう
 Xcode -> Preferences -> Accounts
