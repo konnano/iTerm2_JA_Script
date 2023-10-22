@@ -47,7 +47,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
              /\s+toolTip="([^"]+)"/ ? "$1\n" :
              m|<string key="title">(.+)</string>|   ? "$1\n" :
              m|<string key="toolTip">(.+)</string>| ? "$1\n" : '';
-    $ynyn .= m|<string key="title">([^<]+)\n| ? "$1\\n" :
+    $ynyn .= /<string key="title">([^<]+)\n/ ? "$1\\n" :
              m|^([^>]+)</string>| ? "$1\n" : '';
    }
   close $code;
@@ -220,7 +220,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
     }elsif( $data =~ /<string key="title">/ ){
      for(;$e<@bn;){ chomp $bn[$e];
       $data =~ s|<string key="title">.*</string>|<string key="title">$bn[$e]</string>|;
-       $data =~ s|<string key="title">[^<]+\n|<string key="title">$bn[$e]\n|;
+       $data =~ s/<string key="title">[^<]+\n/<string key="title">$bn[$e]\n/;
         $e++; last;
      }
     }elsif( $data =~ m|^[^>]+</string>| ){
