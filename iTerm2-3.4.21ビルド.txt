@@ -19,7 +19,7 @@ iTerm2-3.4.21/tools/updateVersion.py # 1行目
 
 #!/Library/Frameworks/Python.framework/Versions/3.9/bin/python3
 
-パッケージを使わない場合はhomebrew、python@3.11を使いましょう
+GUIパッケージを使わない場合はhomebrew、python@3.11を使いましょう
 
 brew install python@3.11
 
