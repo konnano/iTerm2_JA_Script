@@ -38,14 +38,17 @@ unless( $ARGV[0] or -f 'trans.txt' ){
  }else{ print" Can't search file 1...\n"; }
 
  $file = -f 'Interfaces/PreferencePanel.xib' ? 'Interfaces/PreferencePanel.xib' : 0;
- if( $file ){
+ if( $file ){ my $ynyn = '';
   open my $code,'<',$file or die"2 $!";
    while(<$code>){
+    $data .= $ynyn, $ynyn = '' if $ynyn =~ /\n/;
     $data .= /\s+title="([^"]+)"/   ? "$1\n" :
              /\s+label="([^"]+)"/   ? "$1\n" :
              /\s+toolTip="([^"]+)"/ ? "$1\n" :
              m|<string key="title">(.+)</string>|   ? "$1\n" :
              m|<string key="toolTip">(.+)</string>| ? "$1\n" : '';
+    $ynyn .= m|<string key="title">([^<]+)\n| ? "$1\\n" :
+             m|^([^>]+)</string>| ? "$1\n" : '';
    }
   close $code;
   $data =~ s/\\0/\\\\0/;
@@ -217,6 +220,12 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
     }elsif( $data =~ /<string key="title">/ ){
      for(;$e<@bn;){ chomp $bn[$e];
       $data =~ s|<string key="title">.*</string>|<string key="title">$bn[$e]</string>|;
+       $data =~ s|<string key="title">[^<]+\n|<string key="title">$bn[$e]\n|;
+        $e++; last;
+     }
+    }elsif( $data =~ m|^[^>]+</string>| ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s|^[^>]+</string>|$bn[$e]</string>|;
         $e++; last;
      }
     }elsif( $data =~ /<string key="toolTip">/ ){
