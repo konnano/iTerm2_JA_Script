@@ -281,7 +281,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_8 $!\n";
    while(<$code>){
-    s/@".+"/@"$bn[$e++]"/ if /^[^=]+\s+@"[^\s]*\s+.*"/ and $bn[$e] =~ s/==/ /;
+    s/@".+"/@"$bn[$e++]"/ if /^[^=]+\s+@"[^\s]*\s+.+"/ and $bn[$e] =~ s/==/ /;
     $me .= $_;
    }
   close $code;
