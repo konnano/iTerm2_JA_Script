@@ -38,16 +38,17 @@ unless( $ARGV[0] or -f 'trans.txt' ){
  }else{ print" Can't search file 1...\n"; }
 
  $file = -f 'Interfaces/PreferencePanel.xib' ? 'Interfaces/PreferencePanel.xib' : 0;
- if( $file ){
+ if( $file ){ my $ynyn = '';
   open my $code,'<',$file or die"2 $!";
    while(<$code>){
+    $data .= $ynyn, $ynyn = '' if $ynyn =~ /\n/;
     $data .= /\s+title="([^"]+)"/   ? "$1\n" :
              /\s+label="([^"]+)"/   ? "$1\n" :
              /\s+toolTip="([^"]+)"/ ? "$1\n" :
-             /<string key="title">([^<]+)\n/ ? "$1\n" :
-             m|^([^>]+)</string>|            ? "$1\n" :
              m|<string key="title">(.+)</string>|   ? "$1\n" :
              m|<string key="toolTip">(.+)</string>| ? "$1\n" : '';
+    $ynyn .= /<string key="title">([^<]+)\n/ ? "$1\\n" :
+             m|^([^>]+)</string>| ? "$1\n" : '';
    }
   close $code;
   $data =~ s/\\0/\\\\0/;
@@ -117,7 +118,8 @@ unless( $ARGV[0] or -f 'trans.txt' ){
  if( $file ){
   open my $code,'<',$file or die"8 $!\n";
    while(<$code>){
-    $data .= "$1\n$2\n" if /^[^=]+\s+@"([^\s]+)\s+(.+)"/;
+    $data .= "$1\n" if /\s+@"([^\s]+)\s+.+"/;
+    $data .= "$1\n" if /\s+@"[^\s]+\s+(.+)"/;
    }
   close $code;
   trans_1 $data,8,2; $data = '';
@@ -182,15 +184,20 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
    my( $e,$me,$file ) = 0;
 
  open my $trans,'<','trans.txt' or die"item_1 $!\n";
-  chomp(my @bn = <$trans>);
+  my @bn = <$trans>;
  close $trans;
 
  $file = -f 'Interfaces/MainMenu.xib' ? 'Interfaces/MainMenu.xib' : 0;
  if( $file ){
   open my $code,'<',$file or die"1_1 $!";
-   while(<$code>){
-    s/title="[^"]+"/title="$bn[$e++]"/;
-    $me .= $_;
+   while(my $data = <$code>){
+    if( $data =~ /\s+title="[^"]*"/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s/title="[^"]*"/title="$bn[$e]"/;
+        $e++; last;
+     }
+    }
+    $me .= $data;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -199,15 +206,40 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  $file = -f 'Interfaces/PreferencePanel.xib' ? 'Interfaces/PreferencePanel.xib' : 0;
  if( $file ){
   open my $code,'<',$file or die"1_2 $!";
-   while(<$code>){
-    s|<string key="toolTip">.+</string>|<string key="toolTip">$bn[$e++]</string>|;
-    s|<string key="title">.+</string>|<string key="title">$bn[$e++]</string>|;
-    s|^[^>]+</string>|$bn[$e++]</string>|;
-    s/<string key="title">[^<]+\n/<string key="title">$bn[$e++]\n/;
-    s/toolTip="[^"]+"/toolTip="$bn[$e++]"/;
-    s/title="[^"]+"/title="$bn[$e++]"/;
-    s/label="[^"]+"/label="$bn[$e++]"/;
-    $me .= $_;
+   while(my $data = <$code>){
+    if( $data =~ /\s+title="[^"]*"/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s/title="[^"]*"/title="$bn[$e]"/;
+        $e++; last;
+     }
+    }elsif( $data =~ /\s+label="[^"]*"/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s/label="[^"]*"/label="$bn[$e]"/;
+        $e++; last;
+     }
+    }elsif( $data =~ /<string key="title">/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s|<string key="title">.*</string>|<string key="title">$bn[$e]</string>|;
+       $data =~ s/<string key="title">[^<]+\n/<string key="title">$bn[$e]\n/;
+        $e++; last;
+     }
+    }elsif( $data =~ m|^[^>]+</string>| ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s|^[^>]+</string>|$bn[$e]</string>|;
+        $e++; last;
+     }
+    }elsif( $data =~ /<string key="toolTip">/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s|<string key="toolTip">.*</string>|<string key="toolTip">$bn[$e]</string>|;
+        $e++; last;
+     }
+    }elsif( $data =~ /\s+toolTip="/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s/toolTip="[^"]*"/toolTip="$bn[$e]"/;
+        $e++; last;
+     }
+    }
+    $me .= $data;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -217,11 +249,24 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
             'Interfaces/iTermPasteSpecialViewController.xib' : 0;
  if( $file ){
   open my $code,'<',$file or die"1_3 $!";
-   while(<$code>){
-    s|<string key="toolTip">.+</string>|<string key="toolTip">$bn[$e++]</string>|;
-    s/toolTip="[^"]+"/toolTip="$bn[$e++]"/;
-    s/title="[^"]+"/title="$bn[$e++]"/;
-    $me .= $_;
+   while(my $data = <$code>){
+    if( $data =~ /\s+title="[^"]*"/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s/title="[^"]*"/title="$bn[$e]"/;
+        $e++; last;
+     }
+    }elsif( $data =~ /<string key="toolTip">/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s|<string key="toolTip">.*</string>|<string key="toolTip">$bn[$e]</string>|;
+        $e++; last;
+     }
+    }elsif( $data =~ /\s+toolTip="/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s/toolTip="[^"]*"/toolTip="$bn[$e]"/;
+        $e++; last;
+     }
+    }
+    $me .= $data;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -231,9 +276,14 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
             'Interfaces/iTermEditKeyActionWindowController.xib' : 0;
  if( $file ){
   open my $code,'<',$file or die"1_4 $!\n";
-   while(<$code>){
-    s/title="[^"]+"/title="$bn[$e++]"/;
-    $me .= $_;
+   while(my $data = <$code>){
+    if( $data =~ /title="[^"]*"/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s/title="[^"]*"/title="$bn[$e]"/;
+        $e++; last;
+     }
+    }
+    $me .= $data;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -243,9 +293,14 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
             'Interfaces/AdvancedWorkingDirectoryWindow.xib' : 0;
  if( $file ){
   open my $code,'<',$file or die"1_5 $!\n";
-   while(<$code>){
-    s/title="[^"]+"/title="$bn[$e++]"/;
-    $me .= $_;
+   while(my $data = <$code>){
+    if( $data =~ /title="[^"]*"/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s/title="[^"]*"/title="$bn[$e]"/;
+        $e++; last;
+     }
+    }
+    $me .= $data;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -255,11 +310,24 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
             'sources/iTermHotkeyPreferencesWindowController.xib' : 0;
  if( $file ){
   open my $code,'<',$file or die"1_6 $!";
-   while(<$code>){
-    s|<string key="title">.+</string>|<string key="title">$bn[$e++]</string>|;
-    s/toolTip="[^"]+"/toolTip="$bn[$e++]"/;
-    s/title="[^"]+"/title="$bn[$e++]"/;
-    $me .= $_;
+   while(my $data = <$code>){
+    if( $data =~ /\s+title="[^"]*"/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s/title="[^"]*"/title="$bn[$e]"/;
+        $e++; last;
+     }
+    }elsif( $data =~ /<string key="title">/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s|<string key="title">.*</string>|<string key="title">$bn[$e]</string>|;
+        $e++; last;
+     }
+    }elsif( $data =~ /\s+toolTip="/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s/toolTip="[^"]*"/toolTip="$bn[$e]"/;
+        $e++; last;
+     }
+    }
+    $me .= $data;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -269,9 +337,14 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
             'sources/iTermBadgeConfigurationWindowController.xib' : 0;
  if( $file ){
   open my $code,'<',$file or die"1_7 $!";
-   while(<$code>){
-    s/title="[^"]+"/title="$bn[$e++]"/;
-    $me .= $_;
+   while(my $data = <$code>){
+    if( $data =~ /\s+title="[^"]*"/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s/title="[^"]*"/title="$bn[$e]"/;
+        $e++; last;
+     }
+    }
+    $me .= $data;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -280,9 +353,15 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  $file = -f 'sources/PointerPrefsController.m' ? 'sources/PointerPrefsController.m' : 0;
  if( $file ){
   open my $code,'<',$file or die"1_8 $!\n";
-   while(<$code>){
-    s/@".+"/@"$bn[$e++]"/ if /^[^=]+\s+@"[^\s]+\s+.+"/ and $bn[$e] =~ s/==/ /;
-    $me .= $_;
+   while(my $data = <$code>){
+    if( $data =~ /\s+@"[^\s]*\s+.*"/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $bn[$e] =~ s/==/ /;
+      $data =~ s/@".*"/@"$bn[$e]"/;
+        $e++; last;
+     }
+    }
+    $me .= $data;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -292,9 +371,14 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
          -f 'sources/iTermKeyBindingAction.m' ? 'sources/iTermKeyBindingAction.m' : 0;
  if( $file ){
   open my $code,'<',$file or die"1_9 $!\n";
-   while(<$code>){
-    s/(actionString\s+=\s+)@"[^"]+"/$1@"$bn[$e++]"/;
-    $me .= $_;
+   while(my $data = <$code>){
+    if( $data =~ /actionString\s+=\s+@"[^"]*"/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s/(actionString\s+=\s+)@"[^"]*"/$1@"$bn[$e]"/;
+        $e++; last;
+     }
+    }
+    $me .= $data;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -304,11 +388,26 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
             'sources/iTermAdvancedSettingsModel.m' : 0;
  if( $file ){
   open my $code,'<',$file or die"1_10 $!";
-   while(<$code>){
-    s/(SECTION_.+)@".*?(\\n|")/$1@"$bn[$e++] $2/;
-    s/(SECTION_.+)\\n.*?\\n/$1\\n$bn[$e++]\\n/;
-    s/(SECTION_.+)\\n[^"]+"/$1\\n$bn[$e++]"/;
-    $me .= $_;
+   while(my $data = <$code>){
+    if( $data =~ /SECTION_.+@".*?(?:\\n|")/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s/(SECTION_.+)@".*?(\\n|")/$1@"$bn[$e] $2/;
+        $e++; last;
+     }
+    }
+    if( $data =~ /SECTION_.+\\n.*?\\n/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s/(SECTION_.+)\\n.*?\\n/$1\\n$bn[$e]\\n/;
+        $e++; last;
+     }
+    }
+    if( $data =~ /SECTION_.+\\n[^"]+"/ ){
+     for(;$e<@bn;){ chomp $bn[$e];
+      $data =~ s/(SECTION_.+)\\n[^"]+"/$1\\n$bn[$e]"/;
+        $e++; last;
+     }
+    }
+    $me .= $data;
    }
   close $code;
   read_1 $me,$file;
