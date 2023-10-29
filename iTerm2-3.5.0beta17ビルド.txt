@@ -16,15 +16,15 @@ Signing Certificate 、Developer ID Application:　GEORGE NACHMAN を Apple Deve
 
 以下をタイプ
 
-cd iTerm2-master
+cd iTerm2-3.5.0beta17
 git init
 git add .
 git commit -m "first commit"
 
-iTerm2-master/submodules/iTerm2-shell-integration/ 以下が無いので個別にダウンロードします
+iTerm2-3.5.0beta17/submodules/iTerm2-shell-integration/ 以下が無いので個別にダウンロードします
 
 github iTerm2-master の submodules　をクリック iTerm2-shell-integration をクリックして、そのページをダウンロード
 
-iTerm2-shell-integration　フォルダ内のファイルを全て iTerm2-master/submodules/iTerm2-shell-integration/ にコピー
+iTerm2-shell-integration　フォルダ内のファイルを全て iTerm2-3.5.0beta17/submodules/iTerm2-shell-integration/ にコピー
 
 これでビルド出来ます
