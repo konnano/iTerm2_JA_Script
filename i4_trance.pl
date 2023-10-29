@@ -24,7 +24,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
   }else{
    system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
           cat tran.txt|trans -b en:$Lang|perl -pe 's/：/:/g;s/\"/”/g'|
-          sed 'N;s/\\n/==/' >> trans.txt";
+          sed 'N;s/\\n/ /' >> trans.txt";
   }
  }
    my( $data,$file );
@@ -192,7 +192,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
   open my $code,'<',$file or die"1_1 $!";
    while(<$code>){
     s/title="[^"]+"/title="$bn[$e++]"/;
-    $me .= $_;
+     $me .= $_;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -209,7 +209,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
     s/toolTip="[^"]+"/toolTip="$bn[$e++]"/;
     s/title="[^"]+"/title="$bn[$e++]"/;
     s/label="[^"]+"/label="$bn[$e++]"/;
-    $me .= $_;
+     $me .= $_;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -223,7 +223,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
     s|<string key="toolTip">.+</string>|<string key="toolTip">$bn[$e++]</string>|;
     s/toolTip="[^"]+"/toolTip="$bn[$e++]"/;
     s/title="[^"]+"/title="$bn[$e++]"/;
-    $me .= $_;
+     $me .= $_;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -235,7 +235,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
   open my $code,'<',$file or die"1_4 $!\n";
    while(<$code>){
     s/title="[^"]+"/title="$bn[$e++]"/;
-    $me .= $_;
+     $me .= $_;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -247,7 +247,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
   open my $code,'<',$file or die"1_5 $!\n";
    while(<$code>){
     s/title="[^"]+"/title="$bn[$e++]"/;
-    $me .= $_;
+     $me .= $_;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -261,7 +261,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
     s|<string key="title">.+</string>|<string key="title">$bn[$e++]</string>|;
     s/toolTip="[^"]+"/toolTip="$bn[$e++]"/;
     s/title="[^"]+"/title="$bn[$e++]"/;
-    $me .= $_;
+     $me .= $_;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -273,7 +273,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
   open my $code,'<',$file or die"1_7 $!";
    while(<$code>){
     s/title="[^"]+"/title="$bn[$e++]"/;
-    $me .= $_;
+     $me .= $_;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -283,8 +283,8 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_8 $!\n";
    while(<$code>){
-    s/@".+"/@"$bn[$e++]"/ if /^[^=]+\s+@"[^\s]+\s+.+"/ and $bn[$e] =~ s/==/ /;
-    $me .= $_;
+    s/@".+"/@"$bn[$e++]"/ if /^[^=]+\s+@"[^\s]+\s+.+"/;
+     $me .= $_;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -296,7 +296,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
   open my $code,'<',$file or die"1_9 $!\n";
    while(<$code>){
     s/(actionString\s+=\s+)@"[^"]+"/$1@"$bn[$e++]"/;
-    $me .= $_;
+     $me .= $_;
    }
   close $code;
   read_1 $me,$file; $me = '';
@@ -310,7 +310,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
     s/(SECTION_.+)@".*?(\\n|")/$1@"$bn[$e++] $2/;
     s/(SECTION_.+)\\n.*?\\n/$1\\n$bn[$e++]\\n/;
     s/(SECTION_.+)\\n[^"]+"/$1\\n$bn[$e++]"/;
-    $me .= $_;
+     $me .= $_;
    }
   close $code;
   read_1 $me,$file;
