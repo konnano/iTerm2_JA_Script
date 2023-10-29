@@ -1,0 +1,30 @@
+MacOS14.0(Xcode 15.0) で、iTerm2-3.5.0beta17をビルドする
+
+以下をダウンロード、インストール
+
+https://www.python.org/ftp/python/3.9.13/python-3.9.13-macos11.pkg
+
+以下をタイプ
+
+/Library/Frameworks/Python.framework/Versions/3.9/bin/pip3 install pyobjc
+
+まず、ビルド
+
+エラーが出てる15項目程のTerm名を自分に変更
+
+Signing Certificate 、Developer ID Application:　GEORGE NACHMAN を Apple Development に変更
+
+以下をタイプ
+
+cd iTerm2-master
+git init
+git add .
+git commit -m "first commit"
+
+iTerm2-master/submodules/iTerm2-shell-integration/ 以下が無いので個別にダウンロードします
+
+github iTerm2-master の submodules　をクリック iTerm2-shell-integration をクリックして、そのページをダウンロード
+
+iTerm2-shell-integration　フォルダ内のファイルを全て iTerm2-master/submodules/iTerm2-shell-integration/ にコピー
+
+これでビルド出来ます
