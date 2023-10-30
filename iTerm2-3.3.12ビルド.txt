@@ -33,7 +33,12 @@ XcodeのHardenedRuntimeボタンは何の為にあるのでしょうか？
 これでバージョン3.3.12ビルド進みましたが、まだエラーが出てくる
 今度はSwift関係のライブラリーが無いそうで流石にここまでかと思ったけど
 検索したらAppleからOS10.14以前の為のSwiftライブラリー(https://support.apple.com/kb/DL1998)が配布されていました
-Appleは後方互換バッサリ切り捨てるわりに訳判らんとこで対応するようですね
+Appleは後方互換バッサリ切り捨てるわりに訳判らんとこで対応するようです
 
-iTerm2は常にその当時の最新の環境で作成されるでしょうから
-ビルドするにもその当時の作者の環境に合わさないといけません
+sources/DVRDecoder.m # 243行目
+
+static BOOL NS_WARN_UNUSED_RESULT SafeIncr(int summand, int addend, int *sum) {
+
+以下に書き換え
+
+static BOOL NS_WARN_UNUSED_RESULT; SafeIncr(int summand, int addend, int *sum) {
