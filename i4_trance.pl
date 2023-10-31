@@ -218,7 +218,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
     s|<string key="toolTip">.*</string>|<string key="toolTip">$bn[$e++]</string>|;
     s|<string key="title">.*</string>|<string key="title">$bn[$e++]</string>|;
     s|^[^>]+</string>|$bn[$e++]</string>|;					## +
-    s/<string key="title">[^<]+\n/<string key="title">$bn[$e++]\n/;
+    s/<string key="title">[^<]*\n/<string key="title">$bn[$e++]\n/;
     s/toolTip="[^"]*"/toolTip="$bn[$e++]"/;
     s/title="[^"]*"/title="$bn[$e++]"/;
     s/label="[^"]*"/label="$bn[$e++]"/;
