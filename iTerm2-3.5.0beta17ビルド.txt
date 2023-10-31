@@ -10,7 +10,7 @@ https://www.python.org/ftp/python/3.9.13/python-3.9.13-macos11.pkg
 
 まず、ビルド
 
-エラーが出てる15項目程のTerm名を自分に変更
+エラーが出てる15項目程のプルダウン Term名を自分に変更
 
 Signing Certificate 、Developer ID Application:　GEORGE NACHMAN を Apple Development に変更
 
