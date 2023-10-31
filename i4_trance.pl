@@ -136,18 +136,31 @@ unless( $ARGV[0] or -f 'trans.txt' ){
   trans_1 $data,9,1; $data = '';
  }else{ print" Can't search file 9...\n"; }
 
+ $file = -f 'sources/iTermSemanticHistoryPrefsController.m' ?
+            'sources/iTermSemanticHistoryPrefsController.m' : 0;
+ if( $file ){
+  open my $code,'<',$file or die"10 $!";
+   while(<$code>){ my $in = '';
+    $in = $1 if /@"(\s*(?:[^\s]+\s+){4}.+)"/;
+     $in =~ s/\\/\\\\/g;
+    $data .= "$in\n" if $in;
+   }
+  close $code;
+  trans_1 $data,10,1; $data = '';
+ }else{ print" Can't search file 10...\n"; }
+
  $file = -f 'sources/iTermAdvancedSettingsModel.m' ?
             'sources/iTermAdvancedSettingsModel.m' : 0;
  if( $file ){
-  open my $code,'<',$file or die"10 $!";
+  open my $code,'<',$file or die"11 $!";
    while(<$code>){
     $data .= "$1\n" if /SECTION_.+@"(.*?)(?:\\n|")/;
      $data .= "$1\n" if /SECTION_.+\\n(.*?)\\n/;
       $data .= "$1\n" if /SECTION_.+\\n([^"]+)"/;
    }
   close $code;
-  trans_1 $data,10,1;
- }else{ print" Can't search file 10...\n"; }
+  trans_1 $data,11,1;
+ }else{ print" Can't search file 11...\n"; }
 
   my $me;
   open my $code1,'<','trans.txt' or die "R1 $!\n";
@@ -302,10 +315,28 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
   read_1 $me,$file; $me = '';
  }else{ print" Can't search file 1_9...\n"; }
 
+ $file = -f 'sources/iTermSemanticHistoryPrefsController.m' ?
+            'sources/iTermSemanticHistoryPrefsController.m' : 0;
+ if( $file ){
+  open my $code,'<',$file or die"1_10 $!";
+   while(<$code>){
+    if( /@"\s*([^\s]+\s+){4}.+"/ or /@"\s+[^"]+\s+"/ ){
+     $bn[$e] =~ s/[^\\]\\(\d)/\\\\$1/g;
+     $bn[$e] =~ s/^\\(\d)/\\\\$1/;
+     $bn[$e] =~ s/\\$/\\n/;
+     s/@"\s+[^"]+\s+"/@" $bn[$e++] "/;
+     s/@"\s*([^\s]+\s+){4}.+"/@" $bn[$e++] "/;
+    }
+     $me .= $_;
+   }
+  close $code;
+  read_1 $me,$file; $me = '';
+ }else{ print" Can't search file 1_10...\n"; }
+
  $file = -f 'sources/iTermAdvancedSettingsModel.m' ?
             'sources/iTermAdvancedSettingsModel.m' : 0;
  if( $file ){
-  open my $code,'<',$file or die"1_10 $!";
+  open my $code,'<',$file or die"1_11 $!";
    while(<$code>){
     s/(SECTION_.+)@".*?(\\n|")/$1@"$bn[$e++] $2/;
     s/(SECTION_.+)\\n.*?\\n/$1\\n$bn[$e++]\\n/;
@@ -314,5 +345,5 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
    }
   close $code;
   read_1 $me,$file;
- }else{ print" Can't search file 1_10...\n"; }
+ }else{ print" Can't search file 1_11...\n"; }1
 }
