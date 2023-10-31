@@ -1,39 +1,24 @@
-iTerm2は多言語対応していません、作者も対応する予定はないようです
-環境設定など文言が多く多言語に対応させるには文字幅の調整が必要になり
-入力幅の変更なども合わせて大変な作業になります
-作者も多言語対応はビッグプロジェクトになるだろうと仰ってます
-日本語だけでもなんとか出来ないかと考えて地味に調整していますが
-私の環境はintelMac10.13（Xcode 10.1）なのでビルド出来るバージョンは限られます
-当然、動作も遅いので調整、ビルド、確認など一連の作業も相当に時間がかかり
-コツコツ、パッケージ化を目指していますがバージョン3.3.12限定になります
+MacOS10.13(Xcode 10.1) で、iTerm2-3.3.12をビルドする
 
-Xcodeはバージョンや依存ライブラリーに厳しくビルドだけでも面倒です
-最初にビルド出来るバージョンを探すのに相当時間がかかりました
-作者が公開してるソース掘り下げてどんどんビルドしてもエラーの連続で
-ログを見てもPython関係で止まってる事しか分かりませんでした
+Swiftライブラリーが必要なので、以下をダウンロード、インストールします
 
-後方互換は非常に重要でPythonはバージョンで全く別物になります
-AppleはPython2をバッサリ切り捨てサポートしないと公表し
-HomeBrewもPython2を使ってると警告を出すようになりました
-Python使わないけど警告が目障りでOS10.13標準のPython2を
-Python3に差し替えていたのが原因でエラー連発で進まなかった
-当たり前ですが当時作者の開発環境はPython2を使っていたんですね
-Python2に戻してようやくビルドに成功し翻訳スクリプトが出来ました
+https://support.apple.com/kb/DL1998
 
-ところが安定バージョンの3.3.12をビルドしてみたら、またエラーです
-Xcodeの仕様変更で証明書関係のHardenedRuntimeが有効になってます
-XcodeにHardenedRuntimeのON,OFFのボタンがあるのですが反映されません
-このボタンはダミーなのか？　何の為にあるんだ？　だからXcode嫌いなんだよ
+iTerm2.xcodeproj/project.pbxproj の HardenedRuntime を無効にします
 
-iTerm2ソースフォルダー内をHARDENED_RUNTIMEでファイル検索したら
-iTerm2.xcodeproj/project.pbxprojでYESになっています
-XcodeのHardenedRuntimeボタンは何の為にあるのでしょうか？
-エディターでNOに書き換えました、12項目程あるのでvimマクロだと簡単です
+以下５行を reg.txt としてコピーし　iTerm2-3.3.12 に保存します
 
-これでバージョン3.3.12ビルド進みましたが、まだエラーが出てくる
-今度はSwift関係のライブラリーが無いそうで流石にここまでかと思ったけど
-検索したらAppleからOS10.14以前の為のSwiftライブラリー(https://support.apple.com/kb/DL1998)が配布されていました
-Appleは後方互換バッサリ切り捨てるわりに訳判らんとこで対応するようです
+:::::::::::::::::::::::: 
+/ENABLE_HARDENED_RUNTIME
+qaf=llcwNOnq20@a:wq
+
+::::::::::::::::::::::::
+
+以下をタイプ
+
+cd iTerm2-3.3.12
+
+vim -s reg.txt iTerm2.xcodeproj/project.pbxproj
 
 sources/DVRDecoder.m # 243行目
 
@@ -42,3 +27,5 @@ static BOOL NS_WARN_UNUSED_RESULT SafeIncr(int summand, int addend, int *sum) {
 以下に書き換え
 
 static BOOL NS_WARN_UNUSED_RESULT; SafeIncr(int summand, int addend, int *sum) {
+
+これで、MacOS10.13（Xcode 10.1) iTerm2.app(3.3.12)のビルド出来てると思います
