@@ -204,7 +204,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_1 $!";
    while(<$code>){
-    s/title="[^"]+"/title="$bn[$e++]"/;
+    s/title="[^"]*"/title="$bn[$e++]"/;
      $me .= $_;
    }
   close $code;
@@ -215,13 +215,13 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_2 $!";
    while(<$code>){
-    s|<string key="toolTip">.+</string>|<string key="toolTip">$bn[$e++]</string>|;
-    s|<string key="title">.+</string>|<string key="title">$bn[$e++]</string>|;
-    s|^[^>]+</string>|$bn[$e++]</string>|;
+    s|<string key="toolTip">.*</string>|<string key="toolTip">$bn[$e++]</string>|;
+    s|<string key="title">.*</string>|<string key="title">$bn[$e++]</string>|;
+    s|^[^>]+</string>|$bn[$e++]</string>|;					## +
     s/<string key="title">[^<]+\n/<string key="title">$bn[$e++]\n/;
-    s/toolTip="[^"]+"/toolTip="$bn[$e++]"/;
-    s/title="[^"]+"/title="$bn[$e++]"/;
-    s/label="[^"]+"/label="$bn[$e++]"/;
+    s/toolTip="[^"]*"/toolTip="$bn[$e++]"/;
+    s/title="[^"]*"/title="$bn[$e++]"/;
+    s/label="[^"]*"/label="$bn[$e++]"/;
      $me .= $_;
    }
   close $code;
@@ -233,9 +233,9 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_3 $!";
    while(<$code>){
-    s|<string key="toolTip">.+</string>|<string key="toolTip">$bn[$e++]</string>|;
-    s/toolTip="[^"]+"/toolTip="$bn[$e++]"/;
-    s/title="[^"]+"/title="$bn[$e++]"/;
+    s|<string key="toolTip">.*</string>|<string key="toolTip">$bn[$e++]</string>|;
+    s/toolTip="[^"]*"/toolTip="$bn[$e++]"/;
+    s/title="[^"]*"/title="$bn[$e++]"/;
      $me .= $_;
    }
   close $code;
@@ -247,7 +247,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_4 $!\n";
    while(<$code>){
-    s/title="[^"]+"/title="$bn[$e++]"/;
+    s/title="[^"]*"/title="$bn[$e++]"/;
      $me .= $_;
    }
   close $code;
@@ -259,7 +259,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_5 $!\n";
    while(<$code>){
-    s/title="[^"]+"/title="$bn[$e++]"/;
+    s/title="[^"]*"/title="$bn[$e++]"/;
      $me .= $_;
    }
   close $code;
@@ -271,9 +271,9 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_6 $!";
    while(<$code>){
-    s|<string key="title">.+</string>|<string key="title">$bn[$e++]</string>|;
-    s/toolTip="[^"]+"/toolTip="$bn[$e++]"/;
-    s/title="[^"]+"/title="$bn[$e++]"/;
+    s|<string key="title">.*</string>|<string key="title">$bn[$e++]</string>|;
+    s/toolTip="[^"]*"/toolTip="$bn[$e++]"/;
+    s/title="[^"]*"/title="$bn[$e++]"/;
      $me .= $_;
    }
   close $code;
@@ -285,7 +285,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_7 $!";
    while(<$code>){
-    s/title="[^"]+"/title="$bn[$e++]"/;
+    s/title="[^"]*"/title="$bn[$e++]"/;
      $me .= $_;
    }
   close $code;
@@ -296,7 +296,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_8 $!\n";
    while(<$code>){
-    s/@".+"/@"$bn[$e++]"/ if /^[^=]+\s+@"[^\s]+\s+.+"/;
+    s/@".+"/@"$bn[$e++]"/ if /^[^=]+\s+@"[^\s]+\s+.+"/;				## +
      $me .= $_;
    }
   close $code;
@@ -308,7 +308,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_9 $!\n";
    while(<$code>){
-    s/(actionString\s+=\s+)@"[^"]+"/$1@"$bn[$e++]"/;
+    s/(actionString\s+=\s+)@"[^"]*"/$1@"$bn[$e++]"/;
      $me .= $_;
    }
   close $code;
@@ -324,7 +324,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
      $bn[$e] =~ s/[^\\]\\(\d)/\\\\$1/g;
      $bn[$e] =~ s/^\\(\d)/\\\\$1/;
      $bn[$e] =~ s/\\$/\\n/;
-     s/@"\s+[^"]+\s+"/@" $bn[$e++] "/;
+     s/@"\s+[^"]+\s+"/@" $bn[$e++] "/;						## +
      s/@"\s*([^\s]+\s+){4}.+"/@" $bn[$e++] "/;
     }
      $me .= $_;
