@@ -28,4 +28,4 @@ static BOOL NS_WARN_UNUSED_RESULT SafeIncr(int summand, int addend, int *sum) {
 
 static BOOL NS_WARN_UNUSED_RESULT; SafeIncr(int summand, int addend, int *sum) {
 
-これで、MacOS10.13（Xcode 10.1) iTerm2.app(3.3.12)のビルド出来てると思います
+これで、MacOS10.13（Xcode 10.1) iTerm2.app(3.3.12)のビルド出来ます
