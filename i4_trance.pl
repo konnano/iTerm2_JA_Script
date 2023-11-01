@@ -23,7 +23,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
           cat tran.txt|trans -b en:$Lang|sed 's/\"/”/g' >> trans.txt";
   }else{
    system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
-          cat tran.txt|trans -b en:$Lang|sed 's/\"/”/g;N;s/\\n/ /' >> trans.txt";
+          cat tran.txt|trans -b en:$Lang|sed 's/\"/”/g;N;s/\\n/==/' >> trans.txt";
   }
  }
    my( $data,$file );
@@ -297,7 +297,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_8 $!\n";
    while(<$code>){
-    s/@".+"/@"$bn[$e++]"/ if /^[^=]+\s+@"[^\s]+\s+.+"/;
+    s/@".+"/@"$bn[$e++]"/ if /^[^=]+\s+@"[^\s]+\s+.+"/ and $bn[$e] =~ s/==/ /;
      $me .= $_;
    }
   close $code;
