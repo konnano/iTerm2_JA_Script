@@ -176,7 +176,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
    s/\\[^n]$/\\/;
    s/(.+ssh.+-t.*)\\(.+)/$1$2 \\/;
    s/\\(.*ssh.+-t.*)/$1 \\/;
-   s/^$/Error Translate/;
+   s/^$|^==$|^==.+|.+==$/Error==Translate/;
     $me .= $_;
    }
   close $code1;
