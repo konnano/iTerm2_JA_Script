@@ -118,7 +118,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
  if( $file ){
   open my $code,'<',$file or die"8 $!\n";
    while(<$code>){
-    $data .= "$1\n$2\n" if /^[^=]+\s+@"([^\s]+)\s+(.+)"/;
+    $data .= "$1\n$2\n" if /[^=]\s+@"([^\s]+)\s+(.+)"/;
    }
   close $code;
   trans_1 $data,8,2; $data = '';
@@ -297,7 +297,7 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_8 $!\n";
    while(<$code>){
-    s/@".+"/@"$bn[$e++]"/ if /^[^=]+\s+@"[^\s]+\s+.+"/ and $bn[$e] =~ s/==/ /;
+    s/@".+"/@"$bn[$e++]"/ if /[^=]\s+@"[^\s]+\s+.+"/ and $bn[$e] =~ s/==/ /;
      $me .= $_;
    }
   close $code;
