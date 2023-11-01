@@ -23,7 +23,7 @@ git commit -m "first commit"
 
 iTerm2-3.5.0beta17/submodules/iTerm2-shell-integration/ 以下が無いので個別にダウンロードします
 
-github iTerm2-master の submodules　をクリック iTerm2-shell-integration をクリックして、そのページをダウンロード
+githubページ iTerm2-master の submodules　をクリック iTerm2-shell-integration をクリックして、そのページをダウンロード
 
 iTerm2-shell-integration　フォルダ内のファイルを全て iTerm2-3.5.0beta17/submodules/iTerm2-shell-integration/ にコピー
 
