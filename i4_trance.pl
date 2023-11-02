@@ -23,7 +23,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
           cat tran.txt|trans -b en:$Lang|sed 's/\"/”/g' >> trans.txt";
   }else{
    system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
-          cat tran.txt|trans -b en:$Lang|sed 's/\"/”/g;N;s/\\n/==/' >> trans.txt";
+          cat tran.txt|trans -b en:$Lang|sed 's/\"/”/g;N;s/\\n//' >> trans.txt";
   }
  }
    my( $data,$file );
@@ -118,7 +118,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
  if( $file ){
   open my $code,'<',$file or die"8 $!\n";
    while(<$code>){
-    $data .= "$1\n$2\n" if /[^=]\s+@"([^\s]+)\s+(.+)"/;
+    $data .= "$1\n$2\n" if /[^=]\s@"([^\s]+)\s+(.+)"/;
    }
   close $code;
   trans_1 $data,8,2; $data = '';
@@ -140,7 +140,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
  if( $file ){
   open my $code,'<',$file or die"10 $!";
    while(<$code>){ my $in = '';
-    $in = $1 if /@"(\s*(?:[^\s]+\s+){4}.+)"/;
+    $in = $1 if /@"\s*((?:[^\s]+\s+){4}.+)"/;
      $in =~ s/\\/\\\\/g;
     $data .= "$in\n" if $in;
    }
@@ -176,7 +176,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
    s/\\[^n]$/\\/;
    s/(.+ssh.+-t.*)\\(.+)/$1$2 \\/;
    s/\\(.*ssh.+-t.*)/$1 \\/;
-   s/^$|^==$|^==.+|.+==$/Error==Translate/;
+   s/^$/Error Translate/;
     $me .= $_;
    }
   close $code1;
@@ -297,7 +297,8 @@ if( $ARGV[0] and $ARGV[0] == 1 ){
  if( $file ){
   open my $code,'<',$file or die"1_8 $!\n";
    while(<$code>){
-    s/@".+"/@"$bn[$e++]"/ if /[^=]\s+@"[^\s]+\s+.+"/ and $bn[$e] =~ s/==/ /;
+    s/([^=]\s)@"[^"]+\s"/$1@"$bn[$e++] "/;
+    s/([^=]\s)@"[^\s]+\s+.+[^\s]"/$1@"$bn[$e++] "/;
      $me .= $_;
    }
   close $code;
