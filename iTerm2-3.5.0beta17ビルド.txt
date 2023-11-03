@@ -1,5 +1,8 @@
 MacOS14.0(Xcode 15.0) で、iTerm2-3.5.0beta17をビルドする
 
+Xcode のアカウント設定をします
+Xcode -> Preferences -> Accounts
+
 以下をダウンロード、インストール
 
 https://www.python.org/ftp/python/3.9.13/python-3.9.13-macos11.pkg
