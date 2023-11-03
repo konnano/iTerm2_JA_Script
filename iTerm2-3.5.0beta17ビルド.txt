@@ -27,6 +27,6 @@ githubページ iTerm2-master の submodules　をクリック iTerm2-shell-inte
 
 iTerm2-shell-integration　フォルダ内のファイルを全て iTerm2-3.5.0beta17/submodules/iTerm2-shell-integration/ にコピー
 
-Xcode を終了し再起動
+Xcode を再起動
 
 これで MacOS14.0(Xcode 15.0) iTerm2-3.5.0beta17 ビルド出来ます
