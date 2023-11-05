@@ -11,7 +11,7 @@ https://www.python.org/ftp/python/3.9.13/python-3.9.13-macos11.pkg
 
 /Library/Frameworks/Python.framework/Versions/3.9/bin/pip3 install pyobjc
 
-iTerm2-3.4.21/tools/updateVersion.py # 1行目
+iTerm2-3.4.22/tools/updateVersion.py # 1行目
 
 #!/opt/homebrew/bin/python3
 
@@ -27,7 +27,7 @@ brew install python@3.11
 
 /usr/local/opt/python@3.11/bin/pip3 install pyobjc
 
-iTerm2-3.4.21/tools/updateVersion.py # 1行目
+iTerm2-3.4.22/tools/updateVersion.py # 1行目
 
 #!/opt/homebrew/bin/python3
 
@@ -38,7 +38,7 @@ iTerm2-3.4.21/tools/updateVersion.py # 1行目
 python-3.9.13-macos11.pkgのアンインストール方法 https://www.macupdate.com/how-to/uninstall-python
 
 
-iTerm2-3.4.21/sources/iTermRootTerminalView.m # 1257行目
+iTerm2-3.4.22/sources/iTermRootTerminalView.m # 1257行目
 
 const NSEdgeInsets safeAreaInsets = self.window.screen.safeAreaInsets;
 return safeAreaInsets.top;
@@ -48,7 +48,7 @@ return safeAreaInsets.top;
 //const NSEdgeInsets safeAreaInsets = self.window.screen.safeAreaInsets;
 return 0;
 
-iTerm2-3.4.21/sources/NSScreen+iTerm.m # 97行目
+iTerm2-3.4.22/sources/NSScreen+iTerm.m # 97行目
 
 return self.safeAreaInsets.top;
 
@@ -56,7 +56,7 @@ return self.safeAreaInsets.top;
 
 return 0;
 
-iTerm2-3.4.21/sources/NSScreen+iTerm.m # 113行目
+iTerm2-3.4.22/sources/NSScreen+iTerm.m # 113行目
 
 return MAX(24, self.safeAreaInsets.top);
 
@@ -64,9 +64,9 @@ return MAX(24, self.safeAreaInsets.top);
 
 return MAX(24, 0);
 
-iTerm2-3.4.21に移動しgitにコミットする
+iTerm2-3.4.22に移動しgitにコミットする
 
-cd iTerm2-3.4.21
+cd iTerm2-3.4.22
 
 git init
 
