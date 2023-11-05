@@ -29,3 +29,11 @@ static BOOL NS_WARN_UNUSED_RESULT SafeIncr(int summand, int addend, int *sum) {
 static BOOL NS_WARN_UNUSED_RESULT; SafeIncr(int summand, int addend, int *sum) {
 
 これで、MacOS10.13（Xcode 10.1) iTerm2.app(3.3.12)のビルド出来ます
+
+#################################################################
+
+Homebrew でOSに対応した iTerm2 をインストールする場合はフォーミュラを書き換えます
+
+brew edit iterm2 # 44行目をコメントにします
+
+# depends_on macos: ">= :catalina"
