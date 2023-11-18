@@ -3,6 +3,8 @@
  iTerm2 のバージョンを探してダウンロードして下さい
  
  翻訳は Google 任せなので translate-shell が必要になります
+
+[**HomeBrew**](https://brew.sh)からインストール
  
  ```brew install translate-shell```
  
