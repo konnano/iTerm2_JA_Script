@@ -4,7 +4,7 @@ use warnings;
 my $Lang = 'ja'; ## trans code
 
 unless( $ARGV[0] or -f 'trans.txt' ){
- system 'trans -T >/dev/null 2>&1';
+ system 'command -v trans >/dev/null';
  die " command not found: trans\n" if $?;
 
  sub trans_1{
