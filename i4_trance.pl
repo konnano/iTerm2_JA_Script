@@ -187,7 +187,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
  unlink 'tran.txt';
 }
 
-if( $ARGV[0] and $ARGV[0] == 1 ){
+if( $ARGV[0] and $ARGV[0] eq '1' ){
 
  sub read_1{
   my( $item,$file ) = @_;
