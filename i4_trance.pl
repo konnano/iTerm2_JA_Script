@@ -25,6 +25,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
    system"trap 'rm tran.txt trans.txt; exit 1' 1 2 3 15
           cat tran.txt|trans -b en:$Lang|sed 's/\"/”/g;N;s/\\n//' >> trans.txt";
   }
+  exit 1 if $?;
  }
    my( $data,$file );
 
