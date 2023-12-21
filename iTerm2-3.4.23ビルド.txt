@@ -72,7 +72,7 @@ git commit -m "first commit"
 
 MacOS14.0(Xcode 15.0)以降では
 iTerm2-3.4.23/tools/updateVersion.py 35行目以降をコメントにします
-一旦ビルド出来ればコメントアウトして再ビルドして下さい
+一旦ビルド出来ればコメントアウトして３回リビルドすればバージョン表示されます
 
  """
  plist["CFBundleShortVersionString"] = version
