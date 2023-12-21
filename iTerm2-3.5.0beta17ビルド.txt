@@ -1,4 +1,4 @@
-MacOS14.0(Xcode 15.0) で、iTerm2-3.5.0beta17をビルドする ## MacOS14.2(Xcode 15.1) では証明書関係でエラーになります
+MacOS14.0(Xcode 15.0.1) で、iTerm2-3.5.0beta18をビルドする # MacOS14.2(Xcode 15.1) では証明書関係でエラーになります
 
 Xcode のアカウント設定をします
 Xcode -> Preferences -> Accounts
@@ -32,4 +32,4 @@ iTerm2-shell-integration　フォルダ内のファイルを全て iTerm2-3.5.0b
 
 Xcode を再起動
 
-これで MacOS14.0(Xcode 15.0) iTerm2-3.5.0beta17 ビルド出来ます
+これで MacOS14.0(Xcode 15.0.1) iTerm2-3.5.0beta18 ビルド出来ます
