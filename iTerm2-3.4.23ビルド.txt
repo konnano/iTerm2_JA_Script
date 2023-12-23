@@ -85,5 +85,3 @@ MacOS10.15（Xcode 12.4) は大丈夫なのですが
 MacOS14.0 (Xcode(15.0) 以降では何故かプルダウンメニューが表示されません
 
 Preferences -> Point -> Bindings メニュー項目クリック
-
-~/Library/Developer/Xcode/DerivedData/iTerm2-...../Build/Products/Development
