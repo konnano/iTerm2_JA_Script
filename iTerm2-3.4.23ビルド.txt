@@ -72,7 +72,7 @@ git commit -m "first commit"
 
 MacOS14.0(Xcode 15.0)以降では
 iTerm2-3.4.23/tools/updateVersion.py 35行目以降をコメントにします
-一旦ビルド出来ればコメントアウトして2回リビルドすればバージョン表示されます
+一旦ビルド出来ればコメントアウトして2回、リビルドすればバージョン表示されます
 
  """
  plist["CFBundleShortVersionString"] = version
@@ -80,5 +80,10 @@ iTerm2-3.4.23/tools/updateVersion.py 35行目以降をコメントにします
  plist["CFBundleVersion"] = version
  plist.writeToFile_atomically_(path, 1)
  """ 
+
+MacOS10.15（Xcode 12.4) は大丈夫なのですが
+MacOS14.0 (Xcode(15.0) 以降では何故かプルダウンメニューが表示されません
+
+Preferences -> Point -> Bindings メニュー項目クリック
 
 ~/Library/Developer/Xcode/DerivedData/iTerm2-...../Build/Products/Development
