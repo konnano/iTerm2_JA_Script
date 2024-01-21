@@ -8,7 +8,7 @@
  
  ```brew install translate-shell```
  
- trans -T で翻訳先の言語を選んで my $Lang = 'ja'; を変更して下さい
+ trans -T コマンドで翻訳先の言語を選んで my $Lang = 'ja'; を変更して下さい
  
  ダウンロードした iTerm2 のフォルダーに、このスクリプトを置いて<br/>
  ターミナルで iTerm2 フォルダーに入って、以下を実行して下さい
