@@ -11,8 +11,6 @@ https://www.python.org/ftp/python/3.9.13/python-3.9.13-macos11.pkg
 
 /Library/Frameworks/Python.framework/Versions/3.9/bin/pip3 install pyobjc
 
-python-3.9.13-macos11.pkgのアンインストール方法 https://www.macupdate.com/how-to/uninstall-python
-
 以下をタイプ
 
 cd iTerm2-3.4.23
@@ -43,8 +41,6 @@ https://www.python.org/ftp/python/3.9.13/python-3.9.13-macos11.pkg
 
 /Library/Frameworks/Python.framework/Versions/3.9/bin/pip3 install pyobjc
 
-python-3.9.13-macos11.pkgのアンインストール方法 https://www.macupdate.com/how-to/uninstall-python
-
 iTerm2-3.4.23に移動しgitにコミットする
 
 cd iTerm2-3.4.23
@@ -69,3 +65,6 @@ MacOS10.15（Xcode 12.4) は大丈夫なのですが
 MacOS14.0 (Xcode(15.0) 以降では何故かプルダウンメニューが完全に表示されません
 
 Preferences -> Point -> Bindings メニュー項目クリック
+__________________________________________________________________________
+
+python-3.9.13-macos11.pkgのアンインストール方法 https://www.macupdate.com/how-to/uninstall-python
