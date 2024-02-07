@@ -3,7 +3,7 @@ MacOS10.15（Xcode 12.4)で、iTerm2-3.4.23をビルドする
 Xcodeのアカウント設定が必要なのか分かりませんが設定しておきましょう
 Xcode -> Preferences -> Accounts
 
-GUIパッケージを使う場合は以下をダウンロードしてインストール
+GUIパッケージをダウンロードしてインストール
 
 https://www.python.org/ftp/python/3.9.13/python-3.9.13-macos11.pkg
 
@@ -11,55 +11,18 @@ https://www.python.org/ftp/python/3.9.13/python-3.9.13-macos11.pkg
 
 /Library/Frameworks/Python.framework/Versions/3.9/bin/pip3 install pyobjc
 
-GUIパッケージを使わない場合はhomebrew、python@3.11を使いましょう
-
-brew install python@3.11
-
-以下のコマンドをタイプしモジュールをインストール
-
-/usr/local/opt/python@3.11/bin/pip3 install pyobjc
-
-iTerm2-3.4.23/tools/updateVersion.py # 1行目
-
-#!/Library/Frameworks/Python.framework/Versions/3.9/bin/python3
-
-以下に書き換え
-
-#!/usr/local/opt/python@3.11/bin/python3
-
-
 python-3.9.13-macos11.pkgのアンインストール方法 https://www.macupdate.com/how-to/uninstall-python
 
-
-iTerm2-3.4.23/sources/iTermRootTerminalView.m # 1257行目
-
-const NSEdgeInsets safeAreaInsets = self.window.screen.safeAreaInsets;
-return safeAreaInsets.top;
-
-以下に書き換え
-
-//const NSEdgeInsets safeAreaInsets = self.window.screen.safeAreaInsets;
-return 0;
-
-iTerm2-3.4.23/sources/NSScreen+iTerm.m # 97行目
-
-return self.safeAreaInsets.top;
-
-以下に書き換え
-
-return 0;
-
-iTerm2-3.4.23/sources/NSScreen+iTerm.m # 113行目
-
-return MAX(24, self.safeAreaInsets.top);
-
-以下に書き換え
-
-return MAX(24, 0);
-
-iTerm2-3.4.23に移動しgitにコミットする
+以下をタイプ
 
 cd iTerm2-3.4.23
+
+vim +1257 +s/const/\\/\\/const/ +1258 +s/safeAreaInsets.top\;/0\;/ +wq sources/iTermRootTerminalView.m
+
+vim +97 +s/self.safeAreaInsets.top\;/0\;/ +wq sources/NSScreen+iTerm.m
+
+vim +113 +s/self.safeAreaInsets.top/0/ +wq sources/NSScreen+iTerm.m
+
 git init
 git add .
 git commit -m "first commit"
@@ -72,13 +35,15 @@ MacOS14.0(Xcode 15.0)以降で、iTerm2-3.4.23をビルドする
 Xcodeのアカウント設定が必要なのか分かりませんが設定しておきましょう
 Xcode -> Preferences -> Accounts
 
-素直にGUIパッケージを使います、以下をダウンロードしてインストール
+GUIパッケージをダウンロードしてインストール
 
 https://www.python.org/ftp/python/3.9.13/python-3.9.13-macos11.pkg
 
 以下のコマンドをタイプしモジュールをインストール
 
 /Library/Frameworks/Python.framework/Versions/3.9/bin/pip3 install pyobjc
+
+python-3.9.13-macos11.pkgのアンインストール方法 https://www.macupdate.com/how-to/uninstall-python
 
 iTerm2-3.4.23に移動しgitにコミットする
 
