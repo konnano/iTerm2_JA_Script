@@ -33,3 +33,7 @@ iTerm2-shell-integration　フォルダ内のファイルを全て iTerm2-3.5.0b
 Xcode を再起動
 
 これで MacOS14.2.1(Xcode 15.1) iTerm2-3.5.0beta20 のビルド出来ます
+________________________________________________________________________
+
+python-3.9.13-macos11.pkgのアンインストール方法 https://www.macupdate.com/how-to/uninstall-python
+
