@@ -20,13 +20,7 @@ cd iTerm2-3.3.12
 
 vim -s reg.txt iTerm2.xcodeproj/project.pbxproj
 
-sources/DVRDecoder.m # 243行目
-
-static BOOL NS_WARN_UNUSED_RESULT SafeIncr(int summand, int addend, int *sum) {
-
-以下に書き換え
-
-static BOOL NS_WARN_UNUSED_RESULT; SafeIncr(int summand, int addend, int *sum) {
+vim +243 +s/RESULT/RESULT\;/ +wq sources/DVRDecoder.m
 
 これで、MacOS10.13（Xcode 10.1) iTerm2.app(3.3.12)のビルド出来ます
 
