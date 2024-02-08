@@ -15,9 +15,9 @@ https://www.python.org/ftp/python/3.9.13/python-3.9.13-macos11.pkg
 
 cd iTerm2-3.4.23
 
-vim +1257 +s/const/\\/\\/const/ +1258 +s/safeAreaInsets.top\;/0\;/ +wq sources/iTermRootTerminalView.m
+vim +1257 +s/const/\\/\\/const/ +1258 +s/safeAreaInsets.top/0/ +wq sources/iTermRootTerminalView.m
 
-vim +97 +s/self.safeAreaInsets.top\;/0\;/ +wq sources/NSScreen+iTerm.m
+vim +97 +s/self.safeAreaInsets.top/0/ +wq sources/NSScreen+iTerm.m
 
 vim +113 +s/self.safeAreaInsets.top/0/ +wq sources/NSScreen+iTerm.m
 
