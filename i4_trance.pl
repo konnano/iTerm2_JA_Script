@@ -4,8 +4,7 @@ use warnings;
 my $Lang = 'ja'; ## trans code
 
 unless( $ARGV[0] or -f 'trans.txt' ){
- system 'command -v trans >/dev/null';
- die " command not found: trans\n" if $?;
+ die " command not found: trans\n" if system 'command -v trans >/dev/null';
 
  sub trans_1{
   my( $data,$i,$ls ) = @_;
