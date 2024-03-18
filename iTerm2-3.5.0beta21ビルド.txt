@@ -26,7 +26,7 @@ git commit -m "first commit"
 mkdir images/Onboarding
 cd images/Onboarding
 touch Onboarding-Speed.png Onboarding-OCL.png Onboarding-Filtering.png Onboarding-AI.png
-### 適当なpngファイルがあれば、それをリネームして置いて下さい
+# iTerm2-v20240317-nightly以降には、images/Onboardingがあるのでそれをコピーして下さい
 
 iTerm2-3.5.0beta21/submodules/iTerm2-shell-integration/ 以下が無いので個別にダウンロードします
 
