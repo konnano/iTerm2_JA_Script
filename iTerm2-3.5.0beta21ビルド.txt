@@ -1,4 +1,4 @@
-MacOS14.2.1(Xcode 15.1) で、iTerm2-3.5.0beta20をビルドする
+MacOS14.2.1(Xcode 15.1) で、iTerm2-3.5.0beta21をビルドする
 
 Xcode のアカウント設定をします
 Xcode -> Preferences -> Accounts
