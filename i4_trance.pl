@@ -152,7 +152,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
             'sources/iTermAdvancedSettingsModel.m' : 0;
  if( $file ){
   open my $code,'<',$file or die"11 $!";
-   while(<$code>){
+   while(<$code>){ s/(.+ssh[^-]*-t[^\\]*)\\(.+)/$1$2/;
     $data .= "$1\n" if /SECTION_.+@"(.*?)(?:\\n|")/;
      $data .= "$1\n" if /SECTION_.+\\n(.*?)\\n/;
       $data .= "$1\n" if /SECTION_.+\\n([^"]+)"/;
@@ -174,8 +174,7 @@ unless( $ARGV[0] or -f 'trans.txt' ){
    s/\\+/\\/g;
    s/\\([1-5(][^.])/\\\\$1/g;
    s/\\[^n]$/\\/;
-   s/(.+ssh.+-t.*)\\(.+)/$1$2 \\/;
-   s/\\(.*ssh.+-t.*)/$1 \\/;
+   s/(.+ssh[^-]*-t.*)/$1\\/;
    s/^$/Error Translate/;
     $me .= $_;
    }
