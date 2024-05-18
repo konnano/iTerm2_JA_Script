@@ -1,4 +1,4 @@
-MacOS14.2.1(Xcode 15.3) で、iTerm2-3.5.0beta26をビルドする
+MacOS14.2.1(Xcode 15.3) で、iTerm2-3.5.0 をビルドする
 
 Xcode のアカウント設定をします
 Xcode -> Preferences -> Accounts
@@ -19,26 +19,26 @@ Signing Certificate 、Developer ID Application:　GEORGE NACHMAN を Apple Deve
 
 以下をタイプ
 
-cd iTerm2-3.5.0beta26
+cd iTerm2-3.5.0
 git init
 git add .
 git commit -m "first commit"
 
-iTerm2-3.5.0beta26/submodules/iTerm2-shell-integration/ 以下が無いので個別にダウンロードします
+iTerm2-3.5.0/submodules/iTerm2-shell-integration/ 以下が無いので個別にダウンロードします
 
 githubページ iTerm2-master の submodules　をクリック iTerm2-shell-integration をクリックして、そのページをダウンロード
 
-iTerm2-shell-integration　フォルダ内のファイルを全て iTerm2-3.5.0beta26/submodules/iTerm2-shell-integration/ にコピー
+iTerm2-shell-integration　フォルダ内のファイルを全て iTerm2-3.5.0/submodules/iTerm2-shell-integration/ にコピー
 
 Xcode を再起動
 
-iTerm2-3.5.0beta26/plists/iTerm2.plist が無いエラーが出る場合は
+iTerm2-3.5.0/plists/iTerm2.plist が無いエラーが出る場合は
 
-iTerm2-3.5.0beta26/plists/dev-iTerm2.plist を使って下さい
+iTerm2-3.5.0/plists/dev-iTerm2.plist を使って下さい
 
-cp iTerm2-3.5.0beta26/plists/dev-iTerm2.plist iTerm2-3.5.0beta26/plists/iTerm2.plist
+cp iTerm2-3.5.0/plists/dev-iTerm2.plist iTerm2-3.5.0/plists/iTerm2.plist
 
-これで MacOS14.2.1(Xcode 15.3) iTerm2-3.5.0beta26 のビルド出来ます
+これで MacOS14.2.1(Xcode 15.3) iTerm2-3.5.0 のビルド出来ます
 
 ________________________________________________________________________
 
