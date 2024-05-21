@@ -1,6 +1,8 @@
  iTerm2 のソースを書き換えて翻訳するPerlスクリプトです  
  [**iTerm2**](https://github.com/gnachman/iTerm2/tags) リリースから Xcode のバージョンに対応してる  
  iTerm2 のバージョンを探してダウンロードして下さい
+
+![iterm2](https://github.com/konnano/iTrem2_JA_Script/assets/73874687/1d36ddc5-edd4-4349-b778-c1e7bf912e75)
  
  翻訳は Google 任せなので translate-shell が必要になります
 
