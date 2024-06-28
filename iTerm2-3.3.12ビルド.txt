@@ -23,15 +23,3 @@ vim -s reg.txt iTerm2.xcodeproj/project.pbxproj
 vim +243 +s/RESULT/RESULT\;/ +wq sources/DVRDecoder.m
 
 これで、MacOS10.13（Xcode 10.1) iTerm2.app(3.3.12)のビルド出来ます
-
-#################################################################
-
-Homebrew でOSに対応した iTerm2 をインストールする場合はフォーミュラを書き換えます
-
-export HOMEBREW_NO_INSTALL_FROM_API=1
-brew update
-brew edit iterm2 # 43行目をコメントにします
-
-# depends_on macos: ">= :catalina"
-
-brew install iterm2
