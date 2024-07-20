@@ -34,7 +34,7 @@ Xcode を再起動
 
 iTerm2-3.5.4beta2/plists/iTerm2.plist が無いエラーが出る場合は、再ビルドして下さい
 
-iTerm2-3.5.4beta2/plists/dev-iTerm2.plist が作られます。もし出来ない場合は
+iTerm2-3.5.4beta2/plists/iTerm2.plist が作られます。もし出来ない場合は
 
 iTerm2-3.5.4beta2/plists/dev-iTerm2.plist を使って下さい
 
