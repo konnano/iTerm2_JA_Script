@@ -38,3 +38,5 @@
 
 ~/Library/Developer/Xcode/DerivedData/iTerm2-...../Build/Products/Development
 
+google 翻訳の仕様変更で不具合が出るかもしれません  
+問題がある場合はどこの国の言語がダメなのか教えて下さい
