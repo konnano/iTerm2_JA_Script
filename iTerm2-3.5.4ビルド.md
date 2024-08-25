@@ -1,5 +1,7 @@
 MacOS14.2.1(Xcode 15.3) で、iTerm2-3.5.4 をビルドする
 
+https://github.com/gnachman/iTerm2/releases/tag/v3.5.4
+
 Xcode のアカウント設定をします
 Xcode -> Preferences -> Accounts
 
