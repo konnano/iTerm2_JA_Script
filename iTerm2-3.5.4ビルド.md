@@ -17,7 +17,7 @@ https://www.python.org/ftp/python/3.9.13/python-3.9.13-macos11.pkg
 
 エラーが出てる15項目程のプルダウン Term名を自分に変更
 
-Signing Certificate 、Developer ID Application:　GEORGE NACHMAN を Apple Development に変更
+Signing Certificate 、Developer ID Application: GEORGE NACHMAN を Apple Development に変更
 
 以下をタイプ
 
@@ -28,9 +28,11 @@ git commit -m "first commit"
 
 iTerm2-3.5.4/submodules/iTerm2-shell-integration/ 以下が無いので個別にダウンロードします
 
-githubページ iTerm2-master の submodules　をクリック iTerm2-shell-integration をクリックして、そのページをダウンロード
+githubページ iTerm2-master の submodules をクリック  
+iTerm2-shell-integration をクリックして、そのページをダウンロード
 
-iTerm2-shell-integration　フォルダ内のファイルを全て iTerm2-3.5.4/submodules/iTerm2-shell-integration/ にコピー
+iTerm2-shell-integration フォルダ内のファイルを全て  
+iTerm2-3.5.4/submodules/iTerm2-shell-integration/ にコピー
 
 Xcode を再起動
 
@@ -46,4 +48,5 @@ cp iTerm2-3.5.4/plists/dev-iTerm2.plist iTerm2-3.5.4/plists/iTerm2.plist
 
 ________________________________________________________________________
 
-python-3.9.13-macos11.pkgのアンインストール方法 https://www.macupdate.com/how-to/uninstall-python
+python-3.9.13-macos11.pkgのアンインストール方法  
+https://www.macupdate.com/how-to/uninstall-python
