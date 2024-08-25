@@ -1,5 +1,7 @@
 MacOS10.15（Xcode 12.4)で、iTerm2-3.4.23をビルドする
 
+https://github.com/gnachman/iTerm2/releases/tag/v3.4.23
+
 Xcodeのアカウント設定が必要なのか分かりませんが設定しておきましょう
 Xcode -> Preferences -> Accounts
 
@@ -51,11 +53,11 @@ git commit -m "first commit"
 iTerm2-3.4.23/tools/updateVersion.py 35行目以降でエラーが出るのでコメントにします
 一旦ビルド出来ればコメントアウトして2回、リビルドすればバージョン表示されます
 
-"""
-plist["CFBundleShortVersionString"] = version
-plist["CFBundleGetInfoString"] = version
-plist["CFBundleVersion"] = version
-plist.writeToFile_atomically_(path, 1)
+"""  
+plist["CFBundleShortVersionString"] = version  
+plist["CFBundleGetInfoString"] = version  
+plist["CFBundleVersion"] = version  
+plist.writeToFile_atomically_(path, 1)  
 """
 
 これで、MacOS14.0（Xcode 15.0)以降 iTerm2.app(3.4.23)のビルド出来ます
