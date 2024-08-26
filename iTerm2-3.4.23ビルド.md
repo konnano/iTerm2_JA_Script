@@ -23,8 +23,8 @@ vim +97 +s/self.safeAreaInsets.top/0/ +wq sources/NSScreen+iTerm.m
 
 vim +113 +s/self.safeAreaInsets.top/0/ +wq sources/NSScreen+iTerm.m
 
-git init
-git add .
+git init  
+git add .  
 git commit -m "first commit"
 
 これで、MacOS10.15（Xcode 12.4) iTerm2.app(3.4.23)のビルド出来ます  
