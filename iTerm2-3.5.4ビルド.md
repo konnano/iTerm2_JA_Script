@@ -21,9 +21,9 @@ Signing Certificate 、Developer ID Application: GEORGE NACHMAN を Apple Develo
 
 以下をタイプ
 
-cd iTerm2-3.5.4
-git init
-git add .
+cd iTerm2-3.5.4  
+git init  
+git add .  
 git commit -m "first commit"
 
 iTerm2-3.5.4/submodules/iTerm2-shell-integration/ 以下が無いので個別にダウンロードします
