@@ -205,6 +205,7 @@ if( $ARGV[0] and $ARGV[0] eq '1' ){
   open my $code,'<',$file or die"1_1 $!";
    while(<$code>){
     s/title="[^"]+"/title="$bn[$e++]"/;
+    s/([^-] )(<action selector="checkForUpdatesFromMenu:[^>]+>)/$1<!-- $2 -->/;
      $me .= $_;
    }
   close $code;
@@ -343,6 +344,6 @@ if( $ARGV[0] and $ARGV[0] eq '1' ){
  }else{ print" Can't search file 1_11...\n"; }
 
 # アップデートされると英語に戻るのでメニュー項目を無効にしてます、元のファイルはMainMenu.xib.buckupになります
-qx(sed -i.buckup -E 's/(<action selector="checkForUpdatesFromMenu:.+)/<!-- \\1 -->/' Interfaces/MainMenu.xib)
-unless -f 'Interfaces/MainMenu.xib.buckup';
+qx(sed -E 's/<!-- (<action selector="checkForUpdatesFromMenu:[^>]+>) -->/\\1/'\\
+   Interfaces/MainMenu.xib > Interfaces/MainMenu.xib.buckup);
 }
