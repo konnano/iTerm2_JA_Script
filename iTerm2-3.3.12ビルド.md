@@ -23,6 +23,6 @@ cd iTerm2-3.3.12
 
 vim -s reg.txt iTerm2.xcodeproj/project.pbxproj
 
-vim +243 +s/RESULT/RESULT\;/ +wq sources/DVRDecoder.m
+vim +243 +s/RESULT/RESULT\\;/ +wq sources/DVRDecoder.m
 
 これで、MacOS10.13（Xcode 10.1) iTerm2.app(3.3.12)のビルド出来ます
