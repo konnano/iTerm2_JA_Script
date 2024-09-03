@@ -153,9 +153,12 @@ unless( $ARGV[0] or -f 'trans.txt' ){
  if( $file ){
   open my $code,'<',$file or die"11 $!";
    while(<$code>){ s/(.+ssh[^-]*-t[^\\]*)\\(.+)/$1$2/;
+    my $kai = () = /\\n/g;
     $data .= "$1\n" if /SECTION_.+@"(.*?)(?:\\n|")/;
-     $data .= "$1\n" if /SECTION_.+\\n(.*?)\\n/;
-      $data .= "$1\n" if /SECTION_.+\\n([^"]+)"/;
+     for(my $k=1;$kai>$k;$k++ ){
+      $data .= "$1\n" if /SECTION_(?:.*?\\n){$k}(.*?)\\n/;
+     }
+    $data .= "$1\n" if /SECTION_.+\\n([^"]+)"/;
    }
   close $code;
   trans_1 $data,11,1;
@@ -334,8 +337,11 @@ if( $ARGV[0] and $ARGV[0] eq '1' ){
  if( $file ){
   open my $code,'<',$file or die"1_11 $!";
    while(<$code>){
+    my $kai = () = /\\n/g;
     s/(SECTION_.+)@".*?(\\n|")/$1@"$bn[$e++] $2/;
-    s/(SECTION_.+)\\n.*?\\n/$1\\n$bn[$e++]\\n/;
+     for(my $k=1;$kai>$k;$k++ ){
+      s/SECTION_((?:.*?\\n){$k}).*?\\n/SECTION_$1$bn[$e++]\\n/;
+     }
     s/(SECTION_.+)\\n[^"]+"/$1\\n$bn[$e++]"/;
      $me .= $_;
    }
