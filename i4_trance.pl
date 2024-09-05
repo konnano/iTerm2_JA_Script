@@ -349,7 +349,6 @@ if( $ARGV[0] and $ARGV[0] eq '1' ){
   read_1 $me,$file;
  }else{ print" Can't search file 1_11...\n"; }
 
-# アップデートされると英語に戻るのでメニュー項目を無効にしてます、元のファイルはMainMenu.xib.buckupになります
 qx(sed -E 's/<!-- (<action selector="checkForUpdatesFromMenu:[^>]+>) -->/\\1/'\\
    Interfaces/MainMenu.xib > Interfaces/MainMenu.xib.buckup);
 }
