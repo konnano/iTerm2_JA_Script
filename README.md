@@ -38,5 +38,8 @@
 
 ~/Library/Developer/Xcode/DerivedData/iTerm2-...../Build/Products/Development
 
+アップデートされると英語に戻るのでメニュー項目を無効にしてます  
+元のファイルはMainMenu.xib.buckupになります
+
 google 翻訳の仕様変更で不具合が出るかもしれません  
 問題がある場合はどこの国の言語がダメなのか教えて下さい
