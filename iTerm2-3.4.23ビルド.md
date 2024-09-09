@@ -47,9 +47,9 @@ https://www.python.org/ftp/python/3.9.13/python-3.9.13-macos11.pkg
 
 iTerm2-3.4.23に移動しgitにコミットする
 
-cd iTerm2-3.4.23
-git init
-git add .
+cd iTerm2-3.4.23  
+git init  
+git add .  
 git commit -m "first commit"
 
 iTerm2-3.4.23/tools/updateVersion.py 35行目以降でエラーが出るのでコメントにします  
